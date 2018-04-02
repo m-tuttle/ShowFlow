@@ -4,10 +4,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-       {/* Insert code here */}
       </div>
     );
   }
 }
 
 export default App;
+
+// example materialize implementation
+// import {Button, Icon} from 'react-materialize'
+//
+//        <Button waves='light'>
+//        <Icon>thumb_up</Icon>
+//        </Button>
