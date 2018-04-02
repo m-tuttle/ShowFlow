@@ -1,0 +1,9 @@
+.header {
+    background-color: white;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+
+.input-field .prefix.active {
+    color: #000;
+  }
