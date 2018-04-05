@@ -2,7 +2,7 @@ import React from "react";
 import { CardPanel, Row, Col } from 'react-materialize';
 import "./Shows.css";
 
-const ShowDetail = props =>
+const Shows = props =>
     <Row>
         <h4 className="mtop white-text">Game of Thrones</h4>
         <Col s={3}>
@@ -34,4 +34,4 @@ const ShowDetail = props =>
 
     </Row>
 
-export default ShowDetail;
+export default Shows;
