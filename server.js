@@ -5,10 +5,13 @@ var logger = require("morgan");
 var bodyParser = require('body-parser');
 var request = require('request');
 var path = require('path');
-var apiRoutes = require("./routes/apiRoutes")
+const http = require('http');
+const socketIO = require('socket.io');
 
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 3001;
 var app = express();
+var server = http.createServer(app)
+const io = socketIO(server);
 
 // Set the app up with morgan
 app.use(logger("dev"));
@@ -18,9 +21,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse application/json
 app.use(bodyParser.json());
-
-// Use apiRoutes
-app.use("/api", apiRoutes);
 
 // Database configuration
 var databaseUrl = "mongodb://localhost/showflow";
@@ -58,6 +58,25 @@ if (process.env.NODE_ENV === 'production') {
   app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, './client/build/index.html'));
   });
+
+// This is what the socket.io syntax is like, we will work this later
+io.on('connection', socket => {
+  console.log('New client connected')
+  
+  // just like on the client side, we have a socket.on method that takes a callback function
+  socket.on('change color', (color) => {
+    // once we get a 'change color' event from one of our clients, we will send it to the rest of the clients
+    // we make use of the socket.emit method again with the argument given to use from the callback function above
+    console.log('Color Changed to: ', color)
+    io.sockets.emit('change color', color)
+  })
+  
+  // disconnect is fired when a client leaves the server
+  socket.on('disconnect', () => {
+    console.log('user disconnected')
+  })
+})
+  
 
 // Listen on port 3001
   app.listen(PORT, function() {
