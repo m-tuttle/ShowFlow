@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 
 // Database configuration
 var databaseUrl = "mongodb://localhost/showflow";
-var collections = ["shows"];
+var collections = ["shows", "users"];
 
 // Hook mongojs config to db variable
 var db = mongojs(databaseUrl , collections);
@@ -59,24 +59,43 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirname, './client/build/index.html'));
   });
 
-// This is what the socket.io syntax is like, we will work this later
-io.on('connection', socket => {
-  console.log('New client connected')
-  
-  // just like on the client side, we have a socket.on method that takes a callback function
-  socket.on('change color', (color) => {
-    // once we get a 'change color' event from one of our clients, we will send it to the rest of the clients
-    // we make use of the socket.emit method again with the argument given to use from the callback function above
-    console.log('Color Changed to: ', color)
-    io.sockets.emit('change color', color)
+  // Account information
+  app.get('/account/:userid', function(req, res) {
+
+
   })
-  
-  // disconnect is fired when a client leaves the server
-  socket.on('disconnect', () => {
-    console.log('user disconnected')
+
+  app.post('/createuser', function(req, res) {
+    db.users.insert({name: "Jaystep"}, function(error, name) {
+      // Log any errors
+      if (error) {
+        res.send(error);
+      }else {
+        res.json(name);
+      }
+    });
   })
-})
-  
+
+  // Show routes
+  app.get('/show/:id', function(req, res) {
+
+  })
+
+  app.post('/createshow', function(req, res) {
+    db.shows.insert({name: "Game of Thrones"}, function(error, show) {
+      // Log any errors
+      if (error) {
+        res.send(error);
+      }else {
+        res.json(show);
+      }
+    })
+  })
+
+  // Feed routes
+  app.get('/feed/:userid', function(req, res) {
+
+  })
 
 // Listen on port 3001
   app.listen(PORT, function() {

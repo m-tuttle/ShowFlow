@@ -1,37 +1,59 @@
 import React from "react";
-import { CardPanel, Row, Col } from 'react-materialize';
+import { CardPanel, Row, Col, Table } from 'react-materialize';
 import "./Shows.css";
 
-const Shows = props =>
+const Shows = (props) => {
+    return (
     <Row>
-        <h4 className="mtop white-text">Game of Thrones</h4>
+        <h4 className="mtop white-text">{props.name}</h4>
         <Col s={3}>
         
         <CardPanel className="white black-text">
             <Row>
-            <img src="http://via.placeholder.com/250x250" alt="showposter"/>
+            <img src="http://via.placeholder.com/150x150" alt="showposter"/>
             </Row>
         </CardPanel>
         </Col>
 
-        <Col s={6}>
+        <Col s={5}>
         
         <CardPanel className="white black-text">
-            <Row>
-            
-            <span><i>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.</i></span>
-            </Row>
+            <Row><b>Summary</b></Row>
+            <Row>{props.summary}</Row>
         </CardPanel>
         </Col>
 
-        <Col s={3}>
+        <Col s={4}>
         <CardPanel className="white black-text">
-            <Row>
-            <span><i>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.</i></span>
-            </Row>
+        <Row><b>Show Info</b></Row>
+        <Table>  
+        <tbody>
+          <tr>
+            <td>Network:</td>
+            <td>{props.network}</td>
+          </tr>
+          <tr>
+            <td>Status:</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Airs:</td>
+          </tr>
+          <tr>
+            <td>Genres:</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Rating:</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </Table>
         </CardPanel>
         </Col>
 
     </Row>
+    
+    )}
 
 export default Shows;

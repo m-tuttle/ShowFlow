@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Header from "../Header";
 import ShowDetail from "../Shows";
 // import Discussion from "../Discussion"
 // import API from "../utils/API";
