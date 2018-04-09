@@ -3,7 +3,6 @@ import { Navbar, NavItem, Icon, Input } from 'react-materialize';
 import Shows from './components/Shows';
 import Feed from './components/Feed'
 import API from './utils/API';
-import socketIOClient from 'socket.io-client'
 
 class App extends Component {
     constructor() {
@@ -13,8 +12,19 @@ class App extends Component {
         showTitle: "",
         showSummary: "",
         showNetwork: "",
+        feed: []
         }
     }
+
+    // componentDidMount() {
+    //     this.loadFeed()
+    //     .then(feed => this.setState({feed: {feed}}))};
+
+    // loadFeed = () => {
+    //     return fetch("/feed")
+    //     .then(res => res.json())
+    //     }
+    
 
     handleFormSubmit = event => {
         event.preventDefault();
@@ -50,10 +60,10 @@ render() {
         {/* Show or feed display */}
 
         {/* Display show */}
-        {this.state.showpage && <Shows name={this.state.showTitle} summary={this.state.showSummary} network={this.state.showNetwork} />}
+        {!this.state.showpage && <Shows name={this.state.showTitle} summary={this.state.showSummary} network={this.state.showNetwork} />}
 
         {/* Display Feed */}
-        {!this.state.feedpage && <Feed />}
+        {this.state.feedpage && <Feed shows={this.state.feed}/>}
             
         </div>
     )

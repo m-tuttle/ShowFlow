@@ -1,5 +1,5 @@
 import React from "react";
-import { CardPanel, Row, Col, Table } from 'react-materialize';
+import { CardPanel, Row, Col, Table, Button } from 'react-materialize';
 import "./Shows.css";
 
 const Shows = (props) => {
@@ -10,7 +10,7 @@ const Shows = (props) => {
         
         <CardPanel className="white black-text">
             <Row>
-            <img src="http://via.placeholder.com/150x150" alt="showposter"/>
+            <img src="http://via.placeholder.com/200x200" alt="showposter"/>
             </Row>
         </CardPanel>
         </Col>
@@ -37,9 +37,6 @@ const Shows = (props) => {
             <td></td>
           </tr>
           <tr>
-            <td>Airs:</td>
-          </tr>
-          <tr>
             <td>Genres:</td>
             <td></td>
           </tr>
@@ -52,6 +49,30 @@ const Shows = (props) => {
         </CardPanel>
         </Col>
 
+        <Col s={4}>
+        <CardPanel className="white black-text">
+            <Row>
+            
+            <p>Discussion Board/Chatroom</p>
+
+            </Row>
+        </CardPanel>
+        </Col>
+        <Col s={4}>
+        <CardPanel className="white black-text">
+            <Row>
+            <p>(Progress Bar + season/episode)</p>
+            <Button>Update Progress</Button>
+            </Row>
+        </CardPanel>
+        </Col>
+        <Col s={4}>
+        <CardPanel className="white black-text">
+            <Row>
+            <p>Friends Watching</p>
+            </Row>
+        </CardPanel>
+        </Col>
     </Row>
     
     )}

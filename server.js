@@ -5,13 +5,10 @@ var logger = require("morgan");
 var bodyParser = require('body-parser');
 var request = require('request');
 var path = require('path');
-const http = require('http');
-const socketIO = require('socket.io');
 
 var PORT = process.env.PORT || 3001;
 var app = express();
-var server = http.createServer(app)
-const io = socketIO(server);
+
 
 // Set the app up with morgan
 app.use(logger("dev"));
@@ -78,12 +75,16 @@ if (process.env.NODE_ENV === 'production') {
 
   // Show routes
   app.get('/show/:id', function(req, res) {
+    db.shows.find({
+      "_id": mongojs.ObjectID(req.params.id)
+    }, function(error, result){
+        res.json(result);
+    })
+  });
 
-  })
-
+  // Test post route
   app.post('/createshow', function(req, res) {
-    db.shows.insert({name: "Game of Thrones"}, function(error, show) {
-      // Log any errors
+    db.shows.insert({name: "Game of Thrones", rating: 10}, function(error, show) {
       if (error) {
         res.send(error);
       }else {
@@ -93,9 +94,12 @@ if (process.env.NODE_ENV === 'production') {
   })
 
   // Feed routes
-  app.get('/feed/:userid', function(req, res) {
-
+  app.get('/feed', function(req, res) {
+    db.shows.find({}, function(err, result) {
+        res.json(result)
   })
+});
+
 
 // Listen on port 3001
   app.listen(PORT, function() {

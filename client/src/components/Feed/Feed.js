@@ -18,7 +18,12 @@ const Feed = (props) => {
         
         <CardPanel className="white black-text">
             <Row><b>FEED</b></Row>
-            
+            {props.shows.map((s) => 
+                <p key={s._id}>
+                {s.rating} <br />
+                {s.name}   
+                </p>
+            )}
         </CardPanel>
         </Col>
 
