@@ -1,11 +1,27 @@
-import React from "react";
-import { CardPanel, Row, Col, Table, Button } from 'react-materialize';
+import React, { Component } from "react";
+import { CardPanel, Row, Col, Table, Button, Modal } from 'react-materialize';
+import API from '../../utils/API';
 import "./Shows.css";
 
-const Shows = (props) => {
+class Shows extends Component {
+    constructor(props) {
+        super(props);
+        API.subscribeToTimer((err, timestamp) => this.setState({ 
+            timestamp }))
+        this.state = {
+            chats: []
+        }
+        }
+    state = {
+        timestamp: 'no timestamp yet',
+      };
+
+
+render() {
     return (
+    <div id="show">
     <Row>
-        <h4 className="mtop white-text">{props.name}</h4>
+        <h4 className="mtop white-text">{this.props.name}</h4>
         <Col s={3}>
         
         <CardPanel className="white black-text">
@@ -19,7 +35,7 @@ const Shows = (props) => {
         
         <CardPanel className="white black-text">
             <Row><b>Summary</b></Row>
-            <Row>{props.summary}</Row>
+            <Row>{this.props.summary}</Row>
         </CardPanel>
         </Col>
 
@@ -30,35 +46,46 @@ const Shows = (props) => {
         <tbody>
           <tr>
             <td>Network:</td>
-            <td>{props.network}</td>
+            <td>{this.props.network}</td>
           </tr>
           <tr>
             <td>Status:</td>
-            <td></td>
+            <td>{this.props.status}</td>
           </tr>
           <tr>
             <td>Genres:</td>
-            <td></td>
+            <td>{this.props.genres.map(x => `${x} | `)}</td>
           </tr>
           <tr>
             <td>Rating:</td>
-            <td></td>
+            <td>{this.props.rating}</td>
           </tr>
         </tbody>
       </Table>
         </CardPanel>
         </Col>
+        </Row>
 
-        <Col s={4}>
+        <Row>
+        <Col s={3}>
         <CardPanel className="white black-text">
             <Row>
             
-            <p>Discussion Board/Chatroom</p>
+            <Modal
+            header="Live Chat"
+            trigger={<Button>Join the Discussion!</Button>}>
+            <hr />
+            <p>{this.state.timestamp}</p>
+            <ul id="messages">
+            {this.state.chats.map(x => `<li>${x}</li>`)}
+            </ul>
+            
+            </Modal>
 
             </Row>
         </CardPanel>
         </Col>
-        <Col s={4}>
+        <Col s={6}>
         <CardPanel className="white black-text">
             <Row>
             <p>(Progress Bar + season/episode)</p>
@@ -66,15 +93,15 @@ const Shows = (props) => {
             </Row>
         </CardPanel>
         </Col>
-        <Col s={4}>
+        <Col s={3}>
         <CardPanel className="white black-text">
             <Row>
             <p>Friends Watching</p>
             </Row>
         </CardPanel>
         </Col>
-    </Row>
-    
-    )}
+        </Row>
+    </div>
+    )}}
 
 export default Shows;

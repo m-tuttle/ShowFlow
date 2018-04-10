@@ -12,20 +12,12 @@ class App extends Component {
         showTitle: "",
         showSummary: "",
         showNetwork: "",
+        showGenres: [],
+        showRating: "",
         feed: []
         }
     }
-
-    // componentDidMount() {
-    //     this.loadFeed()
-    //     .then(feed => this.setState({feed: {feed}}))};
-
-    // loadFeed = () => {
-    //     return fetch("/feed")
-    //     .then(res => res.json())
-    //     }
     
-
     handleFormSubmit = event => {
         event.preventDefault();
         API.searchShows(document.getElementById("search").value)
@@ -34,7 +26,10 @@ class App extends Component {
                 this.setState(
                     { showTitle : res.data[0].show.name,
                     showSummary : res.data[0].show.summary,
-                    showNetwork : res.data[0].show.network.name});
+                    showStatus : res.data[0].show.status,
+                    showNetwork : res.data[0].show.network.name,
+                    showGenres: res.data[0].show.genres,
+                    showRating: res.data[0].show.rating.average});
             })
             .catch(err => console.log(err));
     }
@@ -60,7 +55,7 @@ render() {
         {/* Show or feed display */}
 
         {/* Display show */}
-        {!this.state.showpage && <Shows name={this.state.showTitle} summary={this.state.showSummary} network={this.state.showNetwork} />}
+        {!this.state.showpage && <Shows name={this.state.showTitle} summary={this.state.showSummary} network={this.state.showNetwork} status={this.state.showStatus} genres={this.state.showGenres} rating={this.state.showRating} chats={this.state.showChats}/>}
 
         {/* Display Feed */}
         {this.state.feedpage && <Feed shows={this.state.feed}/>}
