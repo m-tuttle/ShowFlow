@@ -52,9 +52,25 @@ if (process.env.NODE_ENV === 'production') {
   });
 
 
-  app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, './client/build/index.html'));
-  });
+
+
+
+  app.get('/checkuser', function(req, res) {
+    db.users.find({'name': req.query.name, 'password': req.query.pass}, function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    })
+  })
+
+
+
+
+
+
+
+
+
+
 
   // Account information
   app.get('/account/:userid', function(req, res) {
@@ -100,41 +116,15 @@ if (process.env.NODE_ENV === 'production') {
   })
 });
 
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname, './client/build/index.html'));
+});
 
 // Listen on port 3001
   app.listen(PORT, function() {
     console.log('🌎 ==> Now listening on PORT %s! Visit http://localhost:%s in your browser!', PORT, PORT);
   });
 
-// Chatroom
-
-app.get('/chats/:name', function(req, res) {
-  db.shows.find({
-    "name": req.params.name
-  }, function(error, result){
-      res.json(result);
-  })
-});
 
 
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
 
-io.on('connection', (client) => {
-  client.on('subscribeToTimer', (interval) => {
-    console.log('client is subscribing to timer with interval ', interval);
-    setInterval(() => {
-      client.emit('timer', new Date());
-    }, interval);
-  })
-});
-
-io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
-  });
-});
-
-const port = 8000;
-http.listen(port);
-console.log('listening on port ', port);

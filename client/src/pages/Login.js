@@ -1,9 +1,13 @@
 import React from 'react';
 
-const Login = () => {
+const Login = (props) => {
     return (
             <div id="login">
-                <h1>LOGIN</h1>
+                <form>
+                    <input type="text" placeholder="name" id="username" />
+                    <input type="text" placeholder="password" id="pass" />
+                    <button type="submit" onClick={props.handleLogin}>Submit</button>
+                </form>
             </div>
     )
 };
