@@ -55,10 +55,10 @@ render() {
         {/* Show or feed display */}
 
         {/* Display show */}
-        {!this.state.showpage && <Shows name={this.state.showTitle} summary={this.state.showSummary} network={this.state.showNetwork} status={this.state.showStatus} genres={this.state.showGenres} rating={this.state.showRating} chats={this.state.showChats}/>}
+        {this.state.showpage && <Shows name={this.state.showTitle} summary={this.state.showSummary} network={this.state.showNetwork} status={this.state.showStatus} genres={this.state.showGenres} rating={this.state.showRating} chats={this.state.showChats}/>}
 
         {/* Display Feed */}
-        {this.state.feedpage && <Feed shows={this.state.feed}/>}
+        {!this.state.feedpage && <Feed shows={this.state.feed}/>}
             
         </div>
     )
