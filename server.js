@@ -85,7 +85,7 @@ if (process.env.NODE_ENV === 'production') {
     var showid = req.body.watched[1];
     var showtitle = req.body.watched[2];
     var showimage = req.body.watched[3];
-    db.users.findAndModify({query: {_id: mongojs.ObjectId(uId)}, update: {shows: {showid : showid, showtitle : showtitle, showimage : showimage}}}, function(err, result) {
+    db.users.findAndModify({query: {_id: mongojs.ObjectId(uId)}, update: { $push: {shows: {showid : showid, showtitle : showtitle, showimage : showimage}}}}, function(err, result) {
       if (err) throw err;
       res.json(result);
     })
