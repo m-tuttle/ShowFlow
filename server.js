@@ -52,7 +52,14 @@ if (process.env.NODE_ENV === 'production') {
   });
 
   app.get('/checkuser', function(req, res) {
-    db.users.find({'name': req.query.name, 'password': req.query.pass}, function (err, result) {
+    db.users.find(req.query, function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    })
+  })
+
+  app.get('/getuser/:id', function(req, res) {
+    db.users.find({_id: mongojs.ObjectId(req.params.id)}, function(err, result) {
       if (err) throw err;
       res.json(result);
     })
