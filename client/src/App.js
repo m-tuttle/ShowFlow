@@ -1,76 +1,80 @@
 import React, { Component } from 'react';
-import { Navbar, NavItem, Icon, Input } from 'react-materialize';
-import Shows from './components/Shows';
-import Feed from './components/Feed'
-import API from './utils/API';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Profile from './pages/Profile';
+import Login from './pages/Login';
+import Navbar from './components/Navbar';
+import Internal from './utils/Internal';
 
 class App extends Component {
     constructor() {
         super();
         this.state = {
-        showpage: false,
-        showTitle: "",
-        showSummary: "",
-        showNetwork: "",
-        showGenres: [],
-        showRating: "",
-        feed: []
+            loggedIn: false,
+            userId: ""
+        };
+    }
+
+handleLogin = (event) => {
+    event.preventDefault();
+    var name = document.getElementById("username").value;
+    var password = document.getElementById("pass").value;
+    Internal.checkUser({name, password}).then(res => {
+        if (res.data.length > 0) {
+            console.log(res.data[0]);
+            this.setState({loggedIn : true, userId : res.data[0]._id})
+            
         }
-    }
-    
-    handleFormSubmit = event => {
-        event.preventDefault();
-        API.searchShows(document.getElementById("search").value)
-            .then(res => {
-                console.log(res.data[0].show);
-                this.setState(
-                    { showTitle : res.data[0].show.name,
-                    showSummary : res.data[0].show.summary,
-                    showStatus : res.data[0].show.status,
-                    showNetwork : res.data[0].show.network.name,
-                    showGenres: res.data[0].show.genres,
-                    showRating: res.data[0].show.rating.average});
-            })
-            .catch(err => console.log(err));
-    }
+        else {
+            alert("Invalid login. Please try again or create a new account.");
+        }
+    });
+}
+
+handleCreateUser = (event) => {
+    event.preventDefault();
+    var name = document.getElementById("newusername").value;
+    var pass = document.getElementById("newpass").value;
+    var email = document.getElementById("newemail").value;
+    Internal.checkDup({name, email}).then(res => {
+        if (res.data.length > 0) {
+            alert("There is already an account for this user.");
+        }
+        else {
+            Internal.createUser({name, pass, email}).then(res => {
+            alert("Account successfully created.")
+            this.setState({loggedIn : true, userId : res.data._id})
+                });
+            }
+        })
+    };
+
+
 
 render() {
 
-    return (
-        <div className="app">
+    if(!this.state.loggedIn) {
+        return (
 
-        {/* Navbar rendered on all pages */}
+            <Login handleLogin={this.handleLogin} handleCreateUser={this.handleCreateUser}/>
 
-            <Navbar brand="ShowFlow" className="white" right>
-                <NavItem href="#"><Input className="black-text" label="Search" type="text" id="search"><Icon className="black-text" type="submit">search</Icon></Input></NavItem>
-                <NavItem href='#'><Icon className="black-text">home</Icon></NavItem>
-                <NavItem href='#'><Icon className="black-text">notifications</Icon></NavItem>
-                <NavItem href='#'><Icon className="black-text">power_settings_new</Icon></NavItem>
-            </Navbar>
-
-        {/* Test button */}
-
-        <button onClick={this.handleFormSubmit}>Try (enter name in header search bar first)</button>
-
-        {/* Show or feed display */}
-
-        {/* Display show */}
-        {this.state.showpage && <Shows name={this.state.showTitle} summary={this.state.showSummary} network={this.state.showNetwork} status={this.state.showStatus} genres={this.state.showGenres} rating={this.state.showRating} chats={this.state.showChats}/>}
-
-        {/* Display Feed */}
-        {!this.state.feedpage && <Feed shows={this.state.feed}/>}
-            
+        )
+    } 
+    else {
+        return (
+        
+        <Router>
+        <div>
+            <Navbar />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/profile" render={(props) => (<Profile userId={this.state.userId} {...props}/>)} />
         </div>
+      </Router>
     )
+    }
 }
 
 }
 
 export default App;
-
-// example materialize implementation
-// import {Button, Icon} from 'react-materialize'
-//
-//        <Button waves='light'>
-//        <Icon>thumb_up</Icon>
-//        </Button>

@@ -6,7 +6,7 @@ body {
 }
 
 
-nav .brand-logo, .button-collapse {
+nav .brand-logo, nav a, .button-collapse {
   color: black;
 }
 
