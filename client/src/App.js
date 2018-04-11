@@ -37,8 +37,6 @@ handleCreateUser = (event) => {
     var pass = document.getElementById("newpass").value;
     var email = document.getElementById("newemail").value;
     Internal.checkDup({name, email}).then(res => {
-        console.log(res.data);
-        console.log("41");
         if (res.data.length > 0) {
             alert("There is already an account for this user.");
         }
