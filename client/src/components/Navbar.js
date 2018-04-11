@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import { Input, Icon } from 'react-materialize';
+import { Link } from 'react-router-dom';
+import { Icon } from 'react-materialize';
 
 const Navbar = () => {
     return (

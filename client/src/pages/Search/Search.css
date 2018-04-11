@@ -1,0 +1,15 @@
+div.scrollmenu {
+    background-color: #333;
+    overflow: auto;
+    white-space: nowrap;
+  }
+  
+  div.scrollmenu div.stuff {
+    display: inline-block;
+    /* color: white;
+    text-align: center; */
+    padding: 14px;
+    text-decoration: none;
+    max-height: auto;
+    max-width: 250px;
+  }
