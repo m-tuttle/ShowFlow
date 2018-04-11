@@ -18,8 +18,8 @@ class App extends Component {
 handleLogin = (event) => {
     event.preventDefault();
     var name = document.getElementById("username").value;
-    var pass = document.getElementById("pass").value;
-    Internal.checkUser({name, pass}).then(res => {
+    var password = document.getElementById("pass").value;
+    Internal.checkUser({name, password}).then(res => {
         if (res.data.length > 0) {
             console.log(res.data[0]);
             this.setState({loggedIn : true, userId : res.data[0]._id})
@@ -49,7 +49,7 @@ render() {
             <Navbar />
             <Route exact path="/" component={Home} />
             <Route exact path="/home" component={Home} />
-            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/profile" render={(props) => (<Profile userId={this.state.userId} {...props}/>)} />
         </div>
       </Router>
     )
