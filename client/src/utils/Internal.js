@@ -11,7 +11,15 @@ const Internal = {
     },
     
     createUser: (name, password, email) => {
+        return axios.get("/checkuser", { params: input });
+    },
 
+    checkDup: (input) => {
+        return axios.get("/checkdup", { params: input });
+    },
+
+    createUser: (addNew) => {
+        return axios.post("/createuser", addNew );
     }
 
 }
