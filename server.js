@@ -51,12 +51,22 @@ if (process.env.NODE_ENV === 'production') {
     next();
   });
 
-
-
-
-
   app.get('/checkuser', function(req, res) {
     db.users.find({'name': req.query.name, 'password': req.query.pass}, function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    })
+  })
+
+  app.get('/checkdup', function(req, res) {
+    db.users.find({ $or: [{'name': req.query.name}, {'email': req.query.email}]}, function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    })
+  })
+
+  app.post('/createuser', function(req, res) {
+    db.users.insert({'name': req.body.name, 'password': req.body.pass, 'email': req.body.email}, function (err, result) {
       if (err) throw err;
       res.json(result);
     })
@@ -66,6 +76,7 @@ if (process.env.NODE_ENV === 'production') {
 
 
 
+/////////////////////
 
 
 
@@ -75,18 +86,6 @@ if (process.env.NODE_ENV === 'production') {
   // Account information
   app.get('/account/:userid', function(req, res) {
 
-
-  })
-
-  app.post('/createuser', function(req, res) {
-    db.users.insert({name: "Jaystep"}, function(error, name) {
-      // Log any errors
-      if (error) {
-        res.send(error);
-      }else {
-        res.json(name);
-      }
-    });
   })
 
   // Show routes
