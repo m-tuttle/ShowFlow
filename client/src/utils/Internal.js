@@ -10,10 +10,6 @@ const Internal = {
         return axios.get(`/getUser/${id}`);
     },
     
-    createUser: (name, password, email) => {
-        return axios.get("/checkuser", { params: input });
-    },
-
     checkDup: (input) => {
         return axios.get("/checkdup", { params: input });
     },

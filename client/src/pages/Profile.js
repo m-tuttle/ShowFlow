@@ -1,5 +1,6 @@
 import React from 'react';
-import Internal from '../utils/Internal'
+import Internal from '../utils/Internal';
+import {Tabs, Tab} from 'react-materialize';
 
 class Profile extends React.Component {
     constructor(props) {
@@ -31,15 +32,12 @@ class Profile extends React.Component {
 
                 <div className="row card-panel">
                     <div className="col s12">
-                        <ul className="tabs">
-                            <li className="tab col s4"><a href="#watched">Watched</a></li>
-                            <li className="tab col s4"><a href="#watching">Watching</a></li>
-                            <li className="tab col s4"><a href="#want">Want to Watch</a></li>
-                        </ul>
+                        <Tabs className='tab-demo z-depth-1'>
+                            <Tab title="Watched">I watched these shows</Tab>
+                            <Tab title="Watching" active>I am watching these shows</Tab>
+                            <Tab title="Want to Watch">I want to watch these shows</Tab>
+                        </Tabs>
                     </div>
-                    <div id="watched" className="col s12"></div>
-                    <div id="watching" className="col s12"></div>
-                    <div id="want" className="col s12"></div>
                 </div>
 
 
