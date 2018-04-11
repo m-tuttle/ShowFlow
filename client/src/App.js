@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
+import Search from './pages/Search';
 import Navbar from './components/Navbar';
 import Internal from './utils/Internal';
 
@@ -10,7 +11,7 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            loggedIn: false,
+            loggedIn: true,
             userId: ""
         };
     }
@@ -49,6 +50,13 @@ handleCreateUser = (event) => {
         })
     };
 
+handleSearch = (event) => {
+    event.preventDefault();
+
+
+
+}
+
 
 
 render() {
@@ -69,6 +77,7 @@ render() {
             <Route exact path="/" component={Home} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/profile" render={(props) => (<Profile userId={this.state.userId} {...props}/>)} />
+            <Route exact path="/search" component={Search}/>
         </div>
       </Router>
     )
