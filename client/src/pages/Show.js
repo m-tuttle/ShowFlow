@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Show = () => {
+const Show = (props) => {
+    console.log(props);
     return (
         
             <div>

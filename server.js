@@ -79,6 +79,18 @@ if (process.env.NODE_ENV === 'production') {
     })
   })
 
+  app.post('/saveshow/:save', function(req, res) {
+    console.log(req.body.watched);
+    var uId = req.body.watched[0];
+    var showid = req.body.watched[1];
+    var showtitle = req.body.watched[2];
+    var showimage = req.body.watched[3];
+    db.users.findAndModify({query: {_id: mongojs.ObjectId(uId)}, update: {shows: {showid : showid, showtitle : showtitle, showimage : showimage}}}, function(err, result) {
+      if (err) throw err;
+      res.json(result);
+    })
+  });
+
 
 
 

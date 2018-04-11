@@ -16,6 +16,10 @@ const Internal = {
 
     createUser: (addNew) => {
         return axios.post("/createuser", addNew );
+    },
+
+    saveShow: (save) => {
+        return axios.post(`/saveshow/${save}`, save);
     }
 
 }
