@@ -8,17 +8,38 @@ class Profile extends React.Component {
         this.state = {
             user: {},
             load: false,
+            myProfile: false,
         };
     }
 
     componentDidMount = () => {
-        Internal.getUser(this.props.userId)
+        if (this.props.userId === this.props.match.params.id) {
+            this.setState({ myProfile: true });
+        }
+        Internal.getUser(this.props.match.params.id)
             .then(res => this.setState({ user: res.data[0] }))
             .then(() => {
                 if (this.state.user.shows) {
                     this.setState({ load: true });
                 }
             })
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.match.params.id !== this.props.match.params.query) {
+            this.setState({ load: false });
+            if (nextProps.match.params.id !== this.props.userId) {
+                this.setState({ myProfile: false });
+            }
+            Internal.getUser(nextProps.match.params.id)
+                .then(res => this.setState({ user: res.data[0] }))
+                .then(() => {
+                    if (this.state.user.shows) {
+                        this.setState({ load: true });
+                    }
+                })
+
+        }
     }
 
     render() {
@@ -30,6 +51,7 @@ class Profile extends React.Component {
                     </div>
                     <div className="col s1"></div>
                     <div className="col s5">
+                        {(this.state.myProfile) && <h3>My Profile</h3>}
                         <ul>
                             <li><h5>{this.state.user.name}</h5></li>
                         </ul>
