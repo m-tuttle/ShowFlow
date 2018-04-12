@@ -79,7 +79,7 @@ render() {
             <Route exact path="/home" component={Home} />
             <Route exact path="/profile/:id" render={(props) => (<Profile userId={this.state.userId} {...props}/>)} />
             <Route exact path="/search/:query" render={(props) => (<Search userId={this.state.userId} {...props}/>)}/>
-            <Route exact path="/show" component={Show}/>
+            <Route exact path="/show/:name" component={Show}/>
         </div>
       </Router>
     )

@@ -57,7 +57,7 @@ class Search extends React.Component {
                     </center>
                     <br />
                   </div>
-                  <span className="card-title">{x.show.name}</span>
+                  <Link to={`/show/${x.show.name}`}><span className="card-title">{x.show.name}</span></Link>
                   <br />
                   <span>Premier: {x.show.premiered}</span>
                   <br /> <br />
