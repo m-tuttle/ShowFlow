@@ -27,7 +27,12 @@ const Internal = {
 
   showUsers: () => {
     return axios.get('/showallusers/');
+  },
+    
+  topTrending: () => {
+    return axios.get('/toptrending/');
   }
+
 };
 
 
