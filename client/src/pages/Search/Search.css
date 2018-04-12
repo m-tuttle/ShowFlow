@@ -1,5 +1,5 @@
 div.scrollmenu {
-    background-color: #333;
+    background-color: rgba(60, 88, 167, 0.842);
     overflow: auto;
     white-space: nowrap;
   }
@@ -10,6 +10,11 @@ div.scrollmenu {
     text-align: center; */
     padding: 14px;
     text-decoration: none;
-    max-height: auto;
-    max-width: 250px;
+    height: auto;
+    width: 250px;
+  }
+
+  .card-title{
+    white-space: normal;
+    overflow: auto;
   }
