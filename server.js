@@ -139,6 +139,19 @@ if (process.env.NODE_ENV === 'production') {
       );
     });
 
+    app.get("/toptrending", function(req, res) {
+      db.users.aggregate([ 
+        {$unwind: "$shows"},
+        {$group: {_id: "$shows", number: {$sum: 1}}}, 
+        {$sort: {number: -1}}, 
+        {$limit:5}
+      ],
+        function(error, result) {
+          res.json(result);
+        }
+      );
+    });
+
   // Test post route
   app.post('/createshow', function(req, res) {
     db.shows.insert({name: "Game of Thrones", rating: 10}, function(error, show) {
