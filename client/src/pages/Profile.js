@@ -65,26 +65,74 @@ class Profile extends React.Component {
                                 <div id="resultsDiv" className="scrollmenu">
                                     <div className="row">
                                         {(this.state.load) && this.state.user.shows.map(element => {
-                                            return (
-                                                <div className=" stuff" key={element.showid}>
-                                                    <div className="card">
-                                                        <div className="card-image">
-                                                            <center>
-                                                                <img src={element.showimage} alt={element.title} />
-                                                            </center>
+                                            if (element.showstatus === 'watched') {
+                                                return (
+                                                    <div className=" stuff" key={element.showid}>
+                                                        <div className="card">
+                                                            <div className="card-image">
+                                                                <center>
+                                                                    <img src={element.showimage} alt={element.title} />
+                                                                </center>
+                                                                <br />
+                                                            </div>
+                                                            <span className="card-title">{element.showtitle}</span>
                                                             <br />
                                                         </div>
-                                                        <span className="card-title">{element.showtitle}</span>
-                                                        <br />
                                                     </div>
-                                                </div>
-                                            )
+                                                )
+                                            }
                                         })}
                                     </div>
                                 </div>
                             </Tab>
-                            <Tab title="Watching">I am watching these shows</Tab>
-                            <Tab title="Want to Watch">I want to watch these shows</Tab>
+                            <Tab title="Watching">
+                                <div id="resultsDiv" className="scrollmenu">
+                                    <div className="row">
+                                        {(this.state.load) && this.state.user.shows.map(element => {
+                                            if (element.showstatus === 'watching') {
+                                                return (
+                                                    <div className=" stuff" key={element.showid}>
+                                                        <div className="card">
+                                                            <div className="card-image">
+                                                                <center>
+                                                                    <img src={element.showimage} alt={element.title} />
+                                                                </center>
+                                                                <br />
+                                                            </div>
+                                                            <span className="card-title">{element.showtitle}</span>
+                                                            <br />
+                                                        </div>
+                                                    </div>
+                                                )
+                                            }
+                                        })}
+                                    </div>
+                                </div>
+                            </Tab>
+                            <Tab title="Want to Watch">
+                                <div id="resultsDiv" className="scrollmenu">
+                                    <div className="row">
+                                        {(this.state.load) && this.state.user.shows.map(element => {
+                                            if (element.showstatus === 'queued') {
+                                                return (
+                                                    <div className=" stuff" key={element.showid}>
+                                                        <div className="card">
+                                                            <div className="card-image">
+                                                                <center>
+                                                                    <img src={element.showimage} alt={element.title} />
+                                                                </center>
+                                                                <br />
+                                                            </div>
+                                                            <span className="card-title">{element.showtitle}</span>
+                                                            <br />
+                                                        </div>
+                                                    </div>
+                                                )
+                                            }
+                                        })}
+                                    </div>
+                                </div>
+                            </Tab>
                         </Tabs>
                     </div>
                 </div>
