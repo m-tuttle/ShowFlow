@@ -116,6 +116,14 @@ if (process.env.NODE_ENV === 'production') {
     })
   });
 
+    app.get("/showallusers", function(req, res) {
+      db.users.find({},
+        function(error, result) {
+          res.json(result);
+        }
+      );
+    });
+
   // Test post route
   app.post('/createshow', function(req, res) {
     db.shows.insert({name: "Game of Thrones", rating: 10}, function(error, show) {
