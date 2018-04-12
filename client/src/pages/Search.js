@@ -30,20 +30,15 @@ class Search extends React.Component {
 
   addShow = event => {
     event.preventDefault();
-  
+    
     let userId = this.props.userId;
     let saveId = event.target.parentElement.getAttribute("data-id");
     let saveTitle = event.target.parentElement.getAttribute("data-title");
     let saveImage = event.target.parentElement.getAttribute("data-image");
-    let status = "watched"
-
-    var watched = [];
-    watched.push(userId, saveId, saveTitle, saveImage, status);
+    let saveStatus = event.target.getAttribute("data-status");
     
-    console.log(watched);
-  
-    Internal.saveShow({userId, saveId, saveTitle, saveImage, status}).then(res => {
-        alert("Show saved!")
+    Internal.saveShow({userId, saveId, saveTitle, saveImage, saveStatus}).then(res => {
+        alert(`Show updated successfully!`)
   })
 }
   
@@ -65,19 +60,49 @@ class Search extends React.Component {
                   <span className="card-title">{x.show.name}</span>
                   <br />
                   <span>Premier: {x.show.premiered}</span>
+                  <br /> <br />
+                  
+                  <div className='card-content'>
                   <button
-                    onClick={this.addShow}
-                    className="btn-floating halfway-fab waves-effect waves-light red"
-                    data-id={x.show.id}
-                    data-title={x.show.name}
-                    data-image={(x.show.image) ? x.show.image.medium : 'http://via.placeholder.com/210x295'}
+                    className="btn-floating waves-effect waves-light red activator"
                   >
                     <i className="material-icons">add</i>
                   </button>
-
-                  <div className="card-content">
-                    {/* <p>{x.show.summary}</p> */}
                   </div>
+
+                  <div className="card-reveal"
+                  data-id={x.show.id}
+                  data-title={x.show.name}
+                  data-image={(x.show.image) ? x.show.image.medium : 'http://via.placeholder.com/210x295'}>
+                  <span className="card-title grey-text text-darken-4 mbot">{x.show.name}<i className="material-icons right">close</i></span>
+                  <button
+                    onClick={this.addShow}
+                    className="btn waves-effect waves-light red mbot"
+                    data-status="queued"
+                  >
+                    Add to Watchlist
+                    
+                  </button>
+                  <br />
+                  <button
+                  onClick={this.addShow}
+                  className="btn waves-effect waves-light red mbot"
+                  data-status="watching"
+                  >
+                    Currently Watching
+                   
+                  </button>
+                  <br />
+                  <button
+                   onClick={this.addShow}
+                   className="btn waves-effect waves-light red mbot"
+                   data-status="watched"
+                  >
+                    Watched
+                    
+                  </button>
+                </div>
+                  
                 </div>
               </div>
             ))}

@@ -80,14 +80,13 @@ if (process.env.NODE_ENV === 'production') {
   })
 
   app.post('/saveshow/:save', function(req, res) {
-    console.log(req.body);
-    var inpt = "watched"
-    // req.body.watched[4];
-    db.users.findAndModify({query: {_id: mongojs.ObjectId(req.body.userId)}, update : { $push : { "shows.watched" : {showid : req.body.saveId, showtitle : req.body.saveTitle, showimage : req.body.saveImage}}} }, function(err, result) {
+    db.users.findAndModify({query: {_id: mongojs.ObjectId(req.body.userId)}, update : { $push : { "shows" : {showid : req.body.saveId, showtitle : req.body.saveTitle, showimage : req.body.saveImage, showstatus: req.body.saveStatus}}} }, function(err, result) {
       if (err) throw err;
       res.json(result);
     })
   });
+
+
 
 
 

@@ -11,10 +11,14 @@ div.scrollmenu {
     padding: 14px;
     text-decoration: none;
     height: auto;
-    width: 250px;
+    width: 320px;
   }
 
   .card-title{
     white-space: normal;
     overflow: auto;
+  }
+
+  .mbot {
+    margin-bottom: 5%;
   }
