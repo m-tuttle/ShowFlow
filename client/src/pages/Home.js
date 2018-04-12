@@ -33,8 +33,8 @@ class Home extends React.Component {
 
         <div className="row">
  
-
-          <div className="col-sm-3 right">
+        
+          <div className="col-sm-3 right" id="userDiv">
             {this.state.users.map(x => (
               <div className="card horizontal" key={x._id}>
                 <div className="card-image">

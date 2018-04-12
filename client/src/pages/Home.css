@@ -1,28 +1,11 @@
-#rightDiv{
-    border: 2px solid black;
-    margin: 20px;
-    padding: 75px;
-}
-
-#leftDiv{
-    border: 2px solid black;
-    margin: 20px;
+#userDiv{
+    margin-right: 5%;
+    height:500px;
+    width:auto;
+    border:solid 2px orange;
+    overflow:scroll;
+    overflow-x:hidden;
+    overflow-y:scroll;
     padding: 20px;
 }
-/* div.card{
-    padding: auto;
-}
 
-
-.row{
-    float: left;
-    display: flex;
-}
-
-.image-responsive{
-    padding: 15px;
-}
-
-.card-title{
-    padding-top: 10px;
-} */
