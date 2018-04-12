@@ -23,16 +23,18 @@ class Search extends React.Component {
   addShow = event => {
     event.preventDefault();
   
+    let userId = this.props.userId;
     let saveId = event.target.parentElement.getAttribute("data-id");
     let saveTitle = event.target.parentElement.getAttribute("data-title");
     let saveImage = event.target.parentElement.getAttribute("data-image");
+    let status = "watched"
 
     var watched = [];
-    watched.push(this.props.userId, saveId, saveTitle, saveImage);
+    watched.push(userId, saveId, saveTitle, saveImage, status);
     
     console.log(watched);
   
-    Internal.saveShow({watched}).then(res => {
+    Internal.saveShow({userId, saveId, saveTitle, saveImage, status}).then(res => {
         alert("Show saved!")
   })
 }

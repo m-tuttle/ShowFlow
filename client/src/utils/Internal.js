@@ -18,8 +18,8 @@ const Internal = {
         return axios.post("/createuser", addNew );
     },
 
-    saveShow: (save) => {
-        return axios.post(`/saveshow/${save}`, save);
+    saveShow: (show) => {
+        return axios.post(`/saveshow/${show}`, show)
     }
 
 }
