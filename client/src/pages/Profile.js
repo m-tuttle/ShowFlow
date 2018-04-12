@@ -53,7 +53,12 @@ class Profile extends React.Component {
 
     updateShow = (event) => {
         event.preventDefault();
-        alert("update show alert");
+        let userId = this.props.userId;
+        let showId = event.target.getAttribute("data-update");
+        let updateStatus = event.target.getAttribute("data-status");
+        Internal.updateShow({userId, showId, updateStatus}).then(() => {
+            this.componentDidMount();
+        })
     }
 
     render() {
@@ -91,9 +96,43 @@ class Profile extends React.Component {
                                                             </div>
                                                             <span className="card-title">{element.showtitle}</span>
                                                             <hr />
-                                                            <a class="btn-flat" data-update={element.showid} onClick={this.updateShow}>Update</a>
-                                                            <a class="btn-flat right" data-update={element.showid} onClick={this.deleteShow}>Remove</a>
+
+                                                            <div className='card-content'>
+                                                            <a class="btn-flat activator" data-update={element.showid}>Update</a>
+                                                            <a class="btn-flat" data-update={element.showid} onClick={this.deleteShow}>Remove</a>
+                                                            </div>
+
+                                                            <div className="card-reveal">
+                                                            <span className="card-title grey-text text-darken-4 mbot">{element.showtitle}<i className="material-icons right">close</i></span>
+                                                            <button
+                                                            onClick={this.updateShow}
+                                                            className="btn waves-effect waves-light red mbot"
+                                                            data-status="queued"
+                                                            data-update={element.showid}>
+                                                                Add to Watchlist
+                    
+                                                            </button>
                                                             <br />
+                                                            <button
+                                                            onClick={this.updateShow}
+                                                            className="btn waves-effect waves-light red mbot"
+                                                            data-status="watching"
+                                                            data-update={element.showid}
+                                                            >
+                                                                Currently Watching
+                                                            
+                                                            </button>
+                                                            <br />
+                                                            <button
+                                                            onClick={this.updateShow}
+                                                            className="btn waves-effect waves-light red mbot"
+                                                            data-status="watched"
+                                                            data-update={element.showid}
+                                                            >
+                                                                Watched
+                                                                
+                                                            </button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 )
@@ -110,18 +149,52 @@ class Profile extends React.Component {
                                                 return (
                                                     <div className=" stuff" key={element.showid}>
                                                         <div className="card">
-                                                            <div className="card-image">
-                                                                <center>
-                                                                    <img src={element.showimage} alt={element.title} />
-                                                                </center>
-                                                                <br />
-                                                            </div>
-                                                            <span className="card-title">{element.showtitle}</span>
-                                                            <hr />
-                                                            <a class="btn-flat" data-update={element.showid} onClick={this.updateShow}>Update</a>
-                                                            <a class="btn-flat right" data-update={element.showid} onClick={this.deleteShow}>Remove</a>
+                                                        <div className="card-image">
+                                                            <center>
+                                                                <img src={element.showimage} alt={element.title} />
+                                                            </center>
                                                             <br />
                                                         </div>
+                                                        <span className="card-title">{element.showtitle}</span>
+                                                        <hr />
+
+                                                        <div className='card-content'>
+                                                        <a class="btn-flat activator" data-update={element.showid}>Update</a>
+                                                        <a class="btn-flat" data-update={element.showid} onClick={this.deleteShow}>Remove</a>
+                                                        </div>
+
+                                                        <div className="card-reveal">
+                                                        <span className="card-title grey-text text-darken-4 mbot">{element.showtitle}<i className="material-icons right">close</i></span>
+                                                        <button
+                                                        onClick={this.updateShow}
+                                                        className="btn waves-effect waves-light red mbot"
+                                                        data-status="queued"
+                                                        data-update={element.showid}>
+                                                            Add to Watchlist
+                
+                                                        </button>
+                                                        <br />
+                                                        <button
+                                                        onClick={this.updateShow}
+                                                        className="btn waves-effect waves-light red mbot"
+                                                        data-status="watching"
+                                                        data-update={element.showid}
+                                                        >
+                                                            Currently Watching
+                                                        
+                                                        </button>
+                                                        <br />
+                                                        <button
+                                                        onClick={this.updateShow}
+                                                        className="btn waves-effect waves-light red mbot"
+                                                        data-status="watched"
+                                                        data-update={element.showid}
+                                                        >
+                                                            Watched
+                                                            
+                                                        </button>
+                                                        </div>
+                                                    </div>
                                                     </div>
                                                 )
                                             }
@@ -137,18 +210,52 @@ class Profile extends React.Component {
                                                 return (
                                                     <div className=" stuff" key={element.showid}>
                                                         <div className="card">
-                                                            <div className="card-image">
-                                                                <center>
-                                                                    <img src={element.showimage} alt={element.title} />
-                                                                </center>
-                                                                <br />
-                                                            </div>
-                                                            <span className="card-title">{element.showtitle}</span>
-                                                            <hr />
-                                                            <a class="btn-flat" data-update={element.showid} onClick={this.updateShow}>Update</a>
-                                                            <a class="btn-flat right" data-update={element.showid} onClick={this.deleteShow}>Remove</a>
+                                                        <div className="card-image">
+                                                            <center>
+                                                                <img src={element.showimage} alt={element.title} />
+                                                            </center>
                                                             <br />
                                                         </div>
+                                                        <span className="card-title">{element.showtitle}</span>
+                                                        <hr />
+
+                                                        <div className='card-content'>
+                                                        <a class="btn-flat activator" data-update={element.showid}>Update</a>
+                                                        <a class="btn-flat" data-update={element.showid} onClick={this.deleteShow}>Remove</a>
+                                                        </div>
+
+                                                        <div className="card-reveal">
+                                                        <span className="card-title grey-text text-darken-4 mbot">{element.showtitle}<i className="material-icons right">close</i></span>
+                                                        <button
+                                                        onClick={this.updateShow}
+                                                        className="btn waves-effect waves-light red mbot"
+                                                        data-status="queued"
+                                                        data-update={element.showid}>
+                                                            Add to Watchlist
+            
+                                                        </button>
+                                                        <br />
+                                                        <button
+                                                        onClick={this.updateShow}
+                                                        className="btn waves-effect waves-light red mbot"
+                                                        data-status="watching"
+                                                        data-update={element.showid}
+                                                        >
+                                                            Currently Watching
+                                                        
+                                                        </button>
+                                                        <br />
+                                                        <button
+                                                        onClick={this.updateShow}
+                                                        className="btn waves-effect waves-light red mbot"
+                                                        data-status="watched"
+                                                        data-update={element.showid}
+                                                        >
+                                                            Watched
+                                                            
+                                                        </button>
+                                                        </div>
+                                                    </div>
                                                     </div>
                                                 )
                                             }
