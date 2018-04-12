@@ -1,11 +1,12 @@
 #userDiv{
     margin-right: 5%;
-    height:500px;
-    width:auto;
+    height: 500px;
+    width: auto;
     border:solid 2px orange;
     overflow:scroll;
     overflow-x:hidden;
     overflow-y:scroll;
     padding: 20px;
+    
 }
 

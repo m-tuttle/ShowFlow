@@ -1,31 +1,23 @@
 import React from 'react';
 import "./Home.css";
 import { Link } from "react-router-dom";
+import Internal from "../utils/Internal";
 
 class Home extends React.Component {
   constructor() {
     super();
     this.state = {
-      users: []
+      users: [],
+      topWatched: []
     };
   }
 
   componentDidMount = () => {
-    return fetch(`/showallusers`)
-    .then(response => response.json().then(json => this.setState({ users: json }))
-    //   response => response.json().then(json => this.setState({ users: json }))
+    
+    Internal.showUsers().then(response => this.setState({ users: response.data })
     );
+ 
   }
-
-//   showUsers = event => {
-//     event.preventDefault();
-//     // var searchTerm = document.getElementById("showUserButton");
-//     alert("hit");
-//     return fetch(`/showallusers`)
-//     .then(response => response.json().then(json => this.setState({ users: json }))
-//     //   response => response.json().then(json => this.setState({ users: json }))
-//     );
-//   };
 
   render() {
     return <div id="home">
