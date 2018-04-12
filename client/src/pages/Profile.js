@@ -39,7 +39,7 @@ class Profile extends React.Component {
                 <div className="row card-panel">
                     <div className="col s12">
                         <Tabs className='tab-demo z-depth-1'>
-                            <Tab title="Watched">
+                            <Tab title="Watched" active>
                                 <div id="resultsDiv" className="scrollmenu">
                                     <div className="row">
                                         {(this.state.load) && this.state.user.shows.map(element => {

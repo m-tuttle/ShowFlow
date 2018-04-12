@@ -12,8 +12,8 @@ const Navbar = () => {
                     <li><Link to={`/search/${this.query}`}><Icon className="black-text" type="submit">search</Icon>
                     </Link></li>
                     <li><input className="black-text" label="Search" type="text" id="search" onChange={(event) => {this.query = event.target.value}}></input></li>
-                    <li><Link to='/home'>Home</Link></li>
-                    <li><Link to='/profile'>Profile</Link></li>
+                    <li><Link to='/home' className='black-text'>Home</Link></li>
+                    <li><Link to='/profile' className='black-text'>Profile</Link></li>
                 </ul>
             </div>
         </nav>
