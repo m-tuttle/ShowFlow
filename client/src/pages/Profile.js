@@ -42,6 +42,20 @@ class Profile extends React.Component {
         }
     }
 
+    deleteShow = (event) => {
+        event.preventDefault();
+        let userId = this.props.userId;
+        let saveId = event.target.getAttribute("data-update");
+        Internal.deleteShow({userId, saveId}).then(() => {       
+            this.componentDidMount();
+      })
+    }
+
+    updateShow = (event) => {
+        event.preventDefault();
+        alert("update show alert");
+    }
+
     render() {
         return (
             <div className="container">
@@ -76,6 +90,9 @@ class Profile extends React.Component {
                                                                 <br />
                                                             </div>
                                                             <span className="card-title">{element.showtitle}</span>
+                                                            <hr />
+                                                            <a class="btn-flat" data-update={element.showid} onClick={this.updateShow}>Update</a>
+                                                            <a class="btn-flat right" data-update={element.showid} onClick={this.deleteShow}>Remove</a>
                                                             <br />
                                                         </div>
                                                     </div>
@@ -100,6 +117,9 @@ class Profile extends React.Component {
                                                                 <br />
                                                             </div>
                                                             <span className="card-title">{element.showtitle}</span>
+                                                            <hr />
+                                                            <a class="btn-flat" data-update={element.showid} onClick={this.updateShow}>Update</a>
+                                                            <a class="btn-flat right" data-update={element.showid} onClick={this.deleteShow}>Remove</a>
                                                             <br />
                                                         </div>
                                                     </div>
@@ -124,6 +144,9 @@ class Profile extends React.Component {
                                                                 <br />
                                                             </div>
                                                             <span className="card-title">{element.showtitle}</span>
+                                                            <hr />
+                                                            <a class="btn-flat" data-update={element.showid} onClick={this.updateShow}>Update</a>
+                                                            <a class="btn-flat right" data-update={element.showid} onClick={this.deleteShow}>Remove</a>
                                                             <br />
                                                         </div>
                                                     </div>

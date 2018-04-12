@@ -23,7 +23,7 @@ const Internal = {
     },
 
     deleteShow: (show) => {
-        return axios.delete(`/deleteshow/${show}`, show)
+        return axios.delete(`/deleteshow/${show}`, {params: show})
     }
 
 }
