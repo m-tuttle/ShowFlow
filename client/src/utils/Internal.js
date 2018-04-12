@@ -20,6 +20,10 @@ const Internal = {
 
     saveShow: (show) => {
         return axios.post(`/saveshow/${show}`, show)
+    },
+
+    deleteShow: (show) => {
+        return axios.delete(`/deleteshow/${show}`, show)
     }
 
 }

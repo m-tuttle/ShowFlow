@@ -41,6 +41,7 @@ class Home extends React.Component {
                   <img
                     className="image-responsive"
                     src="http://via.placeholder.com/75x75"
+                    alt={x.name}
                   />
                 </div>
                 <div className="card-stacked">
