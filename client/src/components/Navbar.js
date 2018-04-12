@@ -14,6 +14,7 @@ const Navbar = (props) => {
                     <li><input className="black-text" label="Search" type="text" id="search" onChange={props.handleSearchTerm}></input></li>
                     <li><Link to='/home' className='black-text'>Home</Link></li>
                     <li><Link to='/profile' className='black-text'>Profile</Link></li>
+                    <li><a onClick={props.handleLogOut} className='black-text'>Log Out</a></li>
                 </ul>
             </div>
         </nav>

@@ -3,11 +3,15 @@ import { Modal } from 'react-materialize';
 
 const Login = (props) => {
     return (
+        <div id="form-wrapper">
             <div id="login">
                 <form>
                     <input type="text" placeholder="name" id="username" />
                     <input type="text" placeholder="password" id="pass" />
-                    <button type="submit" onClick={props.handleLogin}>Submit</button></form><br />
+                    <button type="submit" onClick={props.handleLogin}>Submit</button>
+                </form>
+                
+                <br />
                     
                     <Modal header='New User' trigger={<a>Create An Account</a>}>
                     <form onSubmit={props.handleCreateUser}>
@@ -21,6 +25,7 @@ const Login = (props) => {
                     </Modal>
                 
             </div>
+        </div>
     )
 };
 

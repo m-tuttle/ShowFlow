@@ -55,6 +55,11 @@ handleSearchTerm = (event) => {
     this.setState({query: event.target.value});
 }
 
+handleLogOut = (event) => {
+    event.preventDefault();
+    this.setState({ loggedIn: false });
+}
+
 render() {
 
     if(!this.state.loggedIn) {
@@ -69,7 +74,7 @@ render() {
         
         <Router>
         <div>
-            <Navbar handleSearchTerm={this.handleSearchTerm} query={this.state.query}/>
+            <Navbar handleSearchTerm={this.handleSearchTerm} handleLogOut={this.handleLogOut} query={this.state.query}/>
             <Route exact path="/" component={Home} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/profile" render={(props) => (<Profile userId={this.state.userId} {...props}/>)} />
