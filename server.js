@@ -88,16 +88,13 @@ if (process.env.NODE_ENV === 'production') {
 
   
 app.delete('/deleteshow/:delete', function(req, res){
-  console.log(req.body);
-
-  var saveId = 481;
-
-  db.users.update({"_id": mongojs.ObjectID(req.body.userId)}, { $pull : { "shows" : { "showid" : saveId }}
+  console.log(req.query.userId);
+  db.users.update({"_id": mongojs.ObjectID(req.query.userId)}, { $pull : { "shows" : { "showid" : req.query.saveId }}
   }, function(error, removed) {
     if (error) {
       res.send(error);
     }else {
-      res.json(book_id);
+      res.json(removed);
     }
   });
 
