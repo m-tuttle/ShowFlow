@@ -36,19 +36,19 @@ class Home extends React.Component {
 
           <div className="col-sm-3 right">
             {this.state.users.map(x => (
-              <div class="card horizontal" key={x._id}>
-                <div class="card-image">
+              <div className="card horizontal" key={x._id}>
+                <div className="card-image">
                   <img
                     className="image-responsive"
                     src="http://via.placeholder.com/75x75"
                     alt={x.name}
                   />
                 </div>
-                <div class="card-stacked">
+                <div className="card-stacked">
                   <center>
                     <Link to={`/profile/${x._id}`}> <span className="card-title">{x.name}</span> </Link>
                   </center>
-                  <div class="card-content">
+                  <div className="card-content">
                     <p>The activity will go here: Jeremy just joined!</p>
                   </div>
                 </div>
