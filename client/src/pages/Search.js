@@ -48,7 +48,7 @@ class Search extends React.Component {
                   <div className="card">
                     <div className="card-image">
                       <center>
-                        <Link to="/show"><img src={x.show.image.medium} /></Link>
+                        <Link to="/show"><img src={(x.show.image) ? x.show.image.medium : 'http://via.placeholder.com/250x250'} alt={x.show.name}/></Link>
                       </center>
                       <br />
                     </div>
@@ -60,8 +60,7 @@ class Search extends React.Component {
                       className="btn-floating halfway-fab waves-effect waves-light red"
                       data-id={x.show.id}
                       data-title={x.show.name}
-                      data-image={x.show.image.medium}
-                      onClick={this.addShow}
+                      data-image={(x.show.image) ? x.show.image.medium : 'http://via.placeholder.com/250x250'}
                     >
                       <i className="material-icons">add</i>
                     </button>

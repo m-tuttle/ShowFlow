@@ -48,7 +48,7 @@ class Profile extends React.Component {
                                                     <div className="card">
                                                         <div className="card-image">
                                                             <center>
-                                                                <img src={element.showimage} />
+                                                                <img src={element.showimage} alt={element.title} />
                                                             </center>
                                                             <br />
                                                         </div>
