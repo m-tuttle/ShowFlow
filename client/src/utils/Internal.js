@@ -22,6 +22,10 @@ const Internal = {
         return axios.post(`/saveshow/${show}`, show)
     },
 
+    updateShow: (show) => {
+        return axios.post(`/updateshow/${show}`, show)
+    },
+
     deleteShow: (show) => {
         return axios.delete(`/deleteshow/${show}`, {params: show})
     }
