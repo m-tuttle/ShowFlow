@@ -86,9 +86,22 @@ if (process.env.NODE_ENV === 'production') {
     })
   });
 
+  
+app.delete('/deleteshow/:delete', function(req, res){
+  console.log(req.body);
 
+  var saveId = 481;
 
+  db.users.update({"_id": mongojs.ObjectID(req.body.userId)}, { $pull : { "shows" : { "showid" : saveId }}
+  }, function(error, removed) {
+    if (error) {
+      res.send(error);
+    }else {
+      res.json(book_id);
+    }
+  });
 
+});
 
 
 
