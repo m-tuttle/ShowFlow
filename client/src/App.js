@@ -13,7 +13,8 @@ class App extends Component {
         super();
         this.state = {
             loggedIn: false,
-            userId: ""
+            userId: "", 
+            query: "",
         };
     }
 
@@ -50,6 +51,9 @@ handleCreateUser = (event) => {
         })
     };
 
+handleSearchTerm = (event) => {
+    this.setState({query: event.target.value});
+}
 
 render() {
 
@@ -65,7 +69,7 @@ render() {
         
         <Router>
         <div>
-            <Navbar />
+            <Navbar handleSearchTerm={this.handleSearchTerm} query={this.state.query}/>
             <Route exact path="/" component={Home} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/profile" render={(props) => (<Profile userId={this.state.userId} {...props}/>)} />
