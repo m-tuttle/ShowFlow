@@ -74,10 +74,10 @@ render() {
         
         <Router>
         <div>
-            <Navbar handleSearchTerm={this.handleSearchTerm} handleLogOut={this.handleLogOut} query={this.state.query}/>
+            <Navbar handleSearchTerm={this.handleSearchTerm} handleLogOut={this.handleLogOut} query={this.state.query} userId={this.state.userId} />
             <Route exact path="/" component={Home} />
             <Route exact path="/home" component={Home} />
-            <Route exact path="/profile" render={(props) => (<Profile userId={this.state.userId} {...props}/>)} />
+            <Route exact path="/profile/:id" render={(props) => (<Profile userId={this.state.userId} {...props}/>)} />
             <Route exact path="/search/:query" render={(props) => (<Search userId={this.state.userId} {...props}/>)}/>
             <Route exact path="/show" component={Show}/>
         </div>

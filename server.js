@@ -80,12 +80,10 @@ if (process.env.NODE_ENV === 'production') {
   })
 
   app.post('/saveshow/:save', function(req, res) {
-    console.log(req.body.watched);
-    var uId = req.body.watched[0];
-    var showid = req.body.watched[1];
-    var showtitle = req.body.watched[2];
-    var showimage = req.body.watched[3];
-    db.users.findAndModify({query: {_id: mongojs.ObjectId(uId)}, update: { $push: {shows: {showid : showid, showtitle : showtitle, showimage : showimage}}}}, function(err, result) {
+    console.log(req.body);
+    var inpt = "watched"
+    // req.body.watched[4];
+    db.users.findAndModify({query: {_id: mongojs.ObjectId(req.body.userId)}, update : { $push : { "shows.watched" : {showid : req.body.saveId, showtitle : req.body.saveTitle, showimage : req.body.saveImage}}} }, function(err, result) {
       if (err) throw err;
       res.json(result);
     })
