@@ -13,7 +13,8 @@ class App extends Component {
         super();
         this.state = {
             loggedIn: false,
-            userId: ""
+            userId: "", 
+            query: "",
         };
     }
 
@@ -50,6 +51,14 @@ handleCreateUser = (event) => {
         })
     };
 
+handleSearchTerm = (event) => {
+    this.setState({query: event.target.value});
+}
+
+handleLogOut = (event) => {
+    event.preventDefault();
+    this.setState({ loggedIn: false });
+}
 
 render() {
 
@@ -65,7 +74,7 @@ render() {
         
         <Router>
         <div>
-            <Navbar />
+            <Navbar handleSearchTerm={this.handleSearchTerm} handleLogOut={this.handleLogOut} query={this.state.query}/>
             <Route exact path="/" component={Home} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/profile" render={(props) => (<Profile userId={this.state.userId} {...props}/>)} />

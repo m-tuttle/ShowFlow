@@ -5,21 +5,29 @@ import { Link } from 'react-router-dom';
 import "./Search/Search.css";
 
 class Search extends React.Component {
-    
-    constructor (props) {
-        super(props);
-         this.state = { 
-           shows:[],
-          }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      shows: [],
     }
+  }
 
   componentDidMount() {
-    var searchTerm = document.getElementById("search").value;
+    var searchTerm = document.getElementById('search').value;
     API.searchShows(searchTerm)
-    .then(res => this.setState( {shows : res.data} ))
+      .then(res => this.setState({ shows: res.data }))
   };
-  
-  
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.match.params.query !== this.props.match.params.query) {
+      var searchTerm = document.getElementById('search').value;
+      API.searchShows(searchTerm)
+        .then(res => this.setState({ shows: res.data }))
+    }
+
+  }
+
   addShow = event => {
     event.preventDefault();
   
@@ -42,42 +50,41 @@ class Search extends React.Component {
     render() {
       return (
       <div>
-          
-          <div id="resultsDiv" className="scrollmenu">
-            <div className="row">
-              {this.state.shows.map(x => (
-                <div className=" stuff" key={x.show.id}>
-                  <div className="card">
-                    <div className="card-image">
-                      <center>
-                        <Link to="/show"><img src={x.show.image.medium} /></Link>
-                      </center>
-                      <br />
-                    </div>
-                    <span className="card-title">{x.show.name}</span>
+
+        <div id="resultsDiv" className="scrollmenu">
+          <div className="row">
+            {this.state.shows.map(x => (
+              <div className=" stuff" key={x.show.id}>
+                <div className="card">
+                  <div className="card-image">
+                    <center>
+                      <Link to="/show"><img src={(x.show.image) ? x.show.image.medium : 'http://via.placeholder.com/210x295'} alt={x.show.name} /></Link>
+                    </center>
                     <br />
-                    <span>Premier: {x.show.premiered}</span>
-                    <button
-                      onClick={this.addShow}
-                      className="btn-floating halfway-fab waves-effect waves-light red"
-                      data-id={x.show.id}
-                      data-title={x.show.name}
-                      data-image={x.show.image.medium}
-                      onClick={this.addShow}
-                    >
-                      <i className="material-icons">add</i>
-                    </button>
-  
-                    <div className="card-content">
-                      {/* <p>{x.show.summary}</p> */}
-                    </div>
+                  </div>
+                  <span className="card-title">{x.show.name}</span>
+                  <br />
+                  <span>Premier: {x.show.premiered}</span>
+                  <button
+                    onClick={this.addShow}
+                    className="btn-floating halfway-fab waves-effect waves-light red"
+                    data-id={x.show.id}
+                    data-title={x.show.name}
+                    data-image={(x.show.image) ? x.show.image.medium : 'http://via.placeholder.com/210x295'}
+                  >
+                    <i className="material-icons">add</i>
+                  </button>
+
+                  <div className="card-content">
+                    {/* <p>{x.show.summary}</p> */}
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
-        );
-    }
+      </div>
+    );
   }
+}
 export default Search;
