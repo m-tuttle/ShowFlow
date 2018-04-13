@@ -1,6 +1,7 @@
 import React from 'react';
 import "./Home.css";
 import { Link } from "react-router-dom";
+import { Row, Col } from 'react-materialize';
 import Internal from "../utils/Internal";
 
 class Home extends React.Component {
@@ -29,19 +30,19 @@ class Home extends React.Component {
         <div className="col s9">
         {this.state.flow.map(x => 
         
-        <div className='card horizontal'key={x.userId}>
+        <div className='card horizontal row'key={x.userId}>
         {/* Image */}
-        <img className='circle' src='http://via.placeholder.com/100x100' alt={x.target} />
+        <img className='circle col s2' src='http://via.placeholder.com/100x100' alt={x.target} />
         {/* Action and target */}
-        <div className='row'>
-          <div className='col s6 pull-s6'>
+        
+          <div className='col s5'>
           <p>{`${x.name} ${x.action} ${x.target}.`}</p>
           </div>
         {/* Date */}
-          <div className='col s6 push-s6'>
-          <p>{new Date(x.date).toLocaleDateString("en-us")}</p>
-          </div>
-          </div>
+        <div className='col s5'>
+          <p className='right'>{new Date(x.date).toLocaleDateString("en-us")}</p>
+        </div>
+         
         
         </div>
         
