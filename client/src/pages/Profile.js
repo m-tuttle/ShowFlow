@@ -1,5 +1,6 @@
 import React from 'react';
 import Internal from '../utils/Internal';
+import { Link } from 'react-router-dom'
 import { Tabs, Tab } from 'react-materialize';
 
 class Profile extends React.Component {
@@ -94,13 +95,14 @@ class Profile extends React.Component {
                                                                 </center>
                                                                 <br />
                                                             </div>
-                                                            <span className="card-title">{element.showtitle}</span>
+                                                            <Link to={`/show/${element.showtitle}`}><span className="card-title">{element.showtitle}</span></Link>
                                                             <hr />
 
+                                                            {this.state.myProfile &&
                                                             <div className='card-content'>
                                                             <a class="btn-flat activator" data-update={element.showid}>Update</a>
                                                             <a class="btn-flat" data-update={element.showid} onClick={this.deleteShow}>Remove</a>
-                                                            </div>
+                                                            </div>}
 
                                                             <div className="card-reveal">
                                                             <span className="card-title grey-text text-darken-4 mbot">{element.showtitle}<i className="material-icons right">close</i></span>
@@ -155,13 +157,14 @@ class Profile extends React.Component {
                                                             </center>
                                                             <br />
                                                         </div>
-                                                        <span className="card-title">{element.showtitle}</span>
+                                                        <Link to={`/show/${element.showtitle}`}><span className="card-title">{element.showtitle}</span></Link>
                                                         <hr />
 
-                                                        <div className='card-content'>
-                                                        <a class="btn-flat activator" data-update={element.showid}>Update</a>
-                                                        <a class="btn-flat" data-update={element.showid} onClick={this.deleteShow}>Remove</a>
-                                                        </div>
+                                                        {this.state.myProfile &&
+                                                            <div className='card-content'>
+                                                            <a class="btn-flat activator" data-update={element.showid}>Update</a>
+                                                            <a class="btn-flat" data-update={element.showid} onClick={this.deleteShow}>Remove</a>
+                                                        </div>}
 
                                                         <div className="card-reveal">
                                                         <span className="card-title grey-text text-darken-4 mbot">{element.showtitle}<i className="material-icons right">close</i></span>
@@ -216,13 +219,14 @@ class Profile extends React.Component {
                                                             </center>
                                                             <br />
                                                         </div>
-                                                        <span className="card-title">{element.showtitle}</span>
+                                                        <Link to={`/show/${element.showtitle}`}><span className="card-title">{element.showtitle}</span></Link>
                                                         <hr />
 
+                                                        {this.state.myProfile &&
                                                         <div className='card-content'>
                                                         <a class="btn-flat activator" data-update={element.showid}>Update</a>
                                                         <a class="btn-flat" data-update={element.showid} onClick={this.deleteShow}>Remove</a>
-                                                        </div>
+                                                        </div>}
 
                                                         <div className="card-reveal">
                                                         <span className="card-title grey-text text-darken-4 mbot">{element.showtitle}<i className="material-icons right">close</i></span>

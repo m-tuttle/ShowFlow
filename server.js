@@ -88,7 +88,7 @@ if (process.env.NODE_ENV === 'production') {
 
   app.post('/updateshow/:update', function(req, res) {
     console.log(req.body);
-    db.users.findAndModify({query: {"_id": mongojs.ObjectID(req.body.userId)}, update: { $set : { "shows.$[].showstatus" : req.body.updateStatus }} }, function(err, result) {
+    db.users.findAndModify({query: {"_id": mongojs.ObjectID(req.body.userId)}, update: { $set : { "shows.$[elem].showstatus" : req.body.updateStatus }}, arrayFilters: [ { "elem.showid":  req.body.showId } ] } , function(err, result) {
       if (err) throw err;
       res.json(result);
     })

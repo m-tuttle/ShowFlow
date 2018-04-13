@@ -1,5 +1,6 @@
 import React from 'react';
-import { CardPanel, Row, Col, Table, Button } from 'react-materialize';
+import { CardPanel, Row, Col, Table, Button, ProgressBar, Modal } from 'react-materialize';
+import Internal from '../utils/Internal';
 import API from '../utils/API';
 
 class Show extends React.Component {
@@ -17,6 +18,20 @@ class Show extends React.Component {
             })
     }
 
+    addShow = event => {
+        event.preventDefault();
+        
+        let userId = this.props.userId;
+        let saveId = event.target.parentElement.getAttribute("data-id");
+        let saveTitle = event.target.parentElement.getAttribute("data-title");
+        let saveImage = event.target.parentElement.getAttribute("data-image");
+        let saveStatus = event.target.getAttribute("data-status");
+        
+        Internal.saveShow({userId, saveId, saveTitle, saveImage, saveStatus}).then(res => {
+            alert(`Show updated successfully!`)
+      })
+    }
+
     render() {
         if (!this.state.show.name) {
             return <div>hi</div>
@@ -30,6 +45,31 @@ class Show extends React.Component {
                             <CardPanel className="white black-text">
                                 <Row>
                                     <img src={this.state.show.image.medium} alt="showposter" />
+                                </Row>
+                                <Row>
+                                <Modal header={this.state.show.name} trigger={<Button>Update</Button>}>
+                                <div data-id={this.state.show.id} data-title={this.state.show.name} data-image={(this.state.show.image) ? this.state.show.image.medium : 'http://via.placeholder.com/210x295'}>
+
+                                    <button
+                                    onClick={this.addShow}
+                                    className="btn waves-effect waves-light red mbot"
+                                    data-status="queued">Add to Watchlist</button>
+                                <br />
+
+                                    <button
+                                    onClick={this.addShow}
+                                    className="btn waves-effect waves-light red mbot"
+                                    data-status="watching">Currently Watching</button>
+                                <br />
+
+                                <button
+                                onClick={this.addShow}
+                                className="btn waves-effect waves-light red mbot"
+                                data-status="watched"
+                                >Watched</button>
+
+                                </div>
+                                </Modal>
                                 </Row>
                             </CardPanel>
                         </Col>
@@ -74,7 +114,7 @@ class Show extends React.Component {
                             <CardPanel className="white black-text">
                                 <Row>
                                     <p>(Progress Bar + season/episode)</p>
-                                    <Button>Update Progress</Button>
+                                    <ProgressBar />
                                 </Row>
                             </CardPanel>
                         </Col>

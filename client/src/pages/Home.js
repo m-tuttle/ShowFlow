@@ -32,7 +32,7 @@ class Home extends React.Component {
             <h4>Top Trending...</h4>
             {this.state.topTrending.map(y => (
               <div className="card horizontal" key={y._id.showid}>
-                <div className="card-title">{y._id.showtitle}</div>
+                <Link to={`/show/${y._id.showtitle}`}><div className="card-title">{y._id.showtitle}</div></Link>
               </div>
             ))}
           </div>
