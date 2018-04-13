@@ -8,7 +8,8 @@ class Home extends React.Component {
     super();
     this.state = {
       users: [],
-      topTrending: []
+      topTrending: [],
+      flow: []
     };
   }
 
@@ -16,30 +17,30 @@ class Home extends React.Component {
     
     Internal.showUsers().then(response => this.setState({ users: response.data }));
     Internal.topTrending().then(response => this.setState({ topTrending: response.data }));
+    Internal.getFlow().then(response => this.setState({ flow: response.data }));
  
   }
 
 
-
-
-
   render() {
-    return <div id="home">
-        <h1>Home</h1>
+    return ( <div id="home">
 
         <div className="row">
-          <div className="col-sm-3 right" id="trendingDiv">
+        <div className="col s9" id="trendingDiv">
+        <p>{this.state.flow.map(x => <li key={x.userId}>{`${x.name} ${x.action} ${x.target}.`}</li>)}</p>
+        </div>
+          <div className="col s3">
+            <div className="row">
+            <div className="col s12" id="trendingDiv">
             <h4>Top Trending...</h4>
             {this.state.topTrending.map(y => (
               <div className="card horizontal" key={y._id.showid}>
                 <Link to={`/show/${y._id.showtitle}`}><div className="card-title">{y._id.showtitle}</div></Link>
               </div>
             ))}
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-sm-3 right" id="userDiv">
+            </div>
+          <div className="row">
+          <div className="col s12" id="userDiv">
             <h4>Users</h4>
             {this.state.users.map(x => (
               <div className="card horizontal" key={x._id}>
@@ -64,8 +65,14 @@ class Home extends React.Component {
             ))}
           </div>
         </div>
-      </div>;
-  }
+          </div>
+      </div>
+          
+
+        
+      </div>
+      </div>
+    )}
 }
 
-export default Home
+export default Home;

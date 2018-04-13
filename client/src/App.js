@@ -13,7 +13,8 @@ class App extends Component {
         super();
         this.state = {
             loggedIn: false,
-            userId: "", 
+            userId: "",
+            userName: "", 
             query: "",
             shows: {}
         };
@@ -25,7 +26,7 @@ handleLogin = (event) => {
     var password = document.getElementById("pass").value;
     Internal.checkUser({name, password}).then(res => {
         if (res.data.length > 0) {
-            this.setState({loggedIn : true, userId : res.data[0]._id})
+            this.setState({loggedIn : true, userId : res.data[0]._id, userName: res.data[0].name})
             
                 Internal.showShows().then(response => {
                     var autoArr = "{";
@@ -55,7 +56,7 @@ handleCreateUser = (event) => {
         else {
             Internal.createUser({name, pass, email}).then(res => {
             alert("Account successfully created.")
-            this.setState({loggedIn : true, userId : res.data._id})
+            this.setState({loggedIn : true, userId : res.data._id, userName: res.data.name})
                 });
             }
         })
@@ -88,7 +89,7 @@ render() {
             <Route exact path="/" component={Home} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/profile/:id" render={(props) => (<Profile userId={this.state.userId} {...props}/>)} />
-            <Route exact path="/search/:query" render={(props) => (<Search userId={this.state.userId} {...props}/>)}/>
+            <Route exact path="/search/:query" render={(props) => (<Search userId={this.state.userId} userName={this.state.userName} {...props}/>)}/>
             <Route exact path="/show/:name" render={(props) => (<Show userId={this.state.userId} {...props}/>)}/>
         </div>
       </Router>

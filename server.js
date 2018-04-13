@@ -82,7 +82,16 @@ if (process.env.NODE_ENV === 'production') {
   app.post('/createuser', function(req, res) {
     db.users.insert({'name': req.body.name, 'password': req.body.pass, 'email': req.body.email}, function (err, result) {
       if (err) throw err;
-      res.json(result);
+      db.flow.insert({'userId': result._id, 'name': result.name, 'date': new Date(), 'action': 'joined', 'target' : 'ShowFlow' }, function (err, result) {
+        if (err) throw err;
+        res.json(result);
+      })
+    })
+  })
+
+  app.get('/flow', function(req, res) {
+    db.flow.find({}).sort({'date': -1}, function(err, docs) {
+      res.json(docs)
     })
     db.flow.insert({})
   })
@@ -102,7 +111,10 @@ if (process.env.NODE_ENV === 'production') {
   app.post('/saveshow/:save', function(req, res) {
     db.users.findAndModify({query: {_id: mongojs.ObjectId(req.body.userId)}, update : { $push : { "shows" : {showid : req.body.saveId, showtitle : req.body.saveTitle, showimage : req.body.saveImage, showstatus: req.body.saveStatus}}} }, function(err, result) {
       if (err) throw err;
-      res.json(result);
+      db.flow.insert({'userId': req.body.userId, 'name': req.body.userName, 'date': new Date(), 'action': req.body.saveStatus, 'target' : req.body.saveTitle }, function (err, result) {
+        if (err) throw err;
+        res.json(result);
+      })
     })
   });
 
@@ -162,13 +174,6 @@ if (process.env.NODE_ENV === 'production') {
         }
       );
     });
-
-  // Feed routes
-  app.get('/feed', function(req, res) {
-    db.shows.find({}, function(err, result) {
-        res.json(result)
-  })
-});
 
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, './client/build/index.html'));

@@ -36,8 +36,9 @@ class Search extends React.Component {
     let saveTitle = event.target.parentElement.getAttribute("data-title");
     let saveImage = event.target.parentElement.getAttribute("data-image");
     let saveStatus = event.target.getAttribute("data-status");
+    let userName = this.props.userName;
     
-    Internal.saveShow({userId, saveId, saveTitle, saveImage, saveStatus}).then(res => {
+    Internal.saveShow({userId, saveId, saveTitle, saveImage, saveStatus, userName}).then(res => {
         alert(`Show updated successfully!`)
   })
 }
