@@ -24,18 +24,22 @@ const Internal = {
   showUsers: () => {
     return axios.get('/showallusers/');
   },
-    
+
   topTrending: () => {
     return axios.get('/toptrending/');
   },
 
-    updateShow: (show) => {
-        return axios.post(`/updateshow/${show}`, show)
-    },
+  updateShow: (show) => {
+    return axios.post(`/updateshow/${show}`, show)
+  },
 
-    deleteShow: (show) => {
-        return axios.delete(`/deleteshow/${show}`, {params: show})
-    }
+  deleteShow: (show) => {
+    return axios.delete(`/deleteshow/${show}`, { params: show })
+  },
+
+  getUsersByShow: (title) => {
+    return axios.get('/usersbyshow', { params: { title } })
+  }
 };
 
 
