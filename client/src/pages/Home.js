@@ -30,7 +30,7 @@ class Home extends React.Component {
         <div className="col s9">
         {this.state.flow.map(x => 
         
-        <div className='card horizontal row'key={x.userId}>
+        <div className='card horizontal row'key={x._Id}>
         {/* Image */}
         <img className='circle col s2 responsive-img' src='http://via.placeholder.com/50x150' alt={x.target} />
         {/* Action and target */}

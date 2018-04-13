@@ -7,13 +7,13 @@ const Login = (props) => {
             <div id="login">
                 <form>
                     <input type="text" placeholder="name" id="username" />
-                    <input type="text" placeholder="password" id="pass" />
+                    <input type="password" placeholder="password" id="pass" />
                     <button type="submit" onClick={props.handleLogin}>Submit</button>
                 </form>
                 
                 <br />
                     
-                    <Modal header='New User' trigger={<a>Create An Account</a>}>
+                    <Modal header='New User' trigger={<a>Create An Account</a>} id='signModal'>
                     <form onSubmit={props.handleCreateUser}>
                     <ul>
                         <li><input type="text" placeholder="name" id="newusername" /></li>
