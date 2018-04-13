@@ -1,4 +1,4 @@
 # Project
 
-#Collaborators
+# Collaborators
 Mike Tuttle, Jeremy Stepanovich and AJ Patel
