@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 
 // Database configuration
 var databaseUrl = "mongodb://localhost/showflow";
-var collections = ["shows", "users"];
+var collections = ["flow", "users"];
 
 // Hook mongojs config to db variable
 var db = mongojs(databaseUrl , collections);
@@ -83,6 +83,16 @@ if (process.env.NODE_ENV === 'production') {
     db.users.insert({'name': req.body.name, 'password': req.body.pass, 'email': req.body.email}, function (err, result) {
       if (err) throw err;
       res.json(result);
+      db.flow.insert({'userId': result._id, 'name': result.name, 'date': new Date(), 'action': 'joined', 'target' : 'ShowFlow' }, function (err, result) {
+        if (err) throw err;
+        res.json(result);
+      })
+    })
+  })
+
+  app.get('/flow', function(req, res) {
+    db.flow.find({}).sort({'date': -1}, function(err, docs) {
+      res.json(docs)
     })
   })
 

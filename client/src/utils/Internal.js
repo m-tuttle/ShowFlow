@@ -43,7 +43,12 @@ const Internal = {
 
   getUsersByShow: (title) => {
     return axios.get('/usersbyshow', { params: { title } })
+  },
+
+  getFlow: () => {
+    return axios.get('/flow')
   }
+  
 };
 
 

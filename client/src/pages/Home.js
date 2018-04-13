@@ -8,7 +8,8 @@ class Home extends React.Component {
     super();
     this.state = {
       users: [],
-      topTrending: []
+      topTrending: [],
+      flow: []
     };
   }
 
@@ -16,11 +17,9 @@ class Home extends React.Component {
     
     Internal.showUsers().then(response => this.setState({ users: response.data }));
     Internal.topTrending().then(response => this.setState({ topTrending: response.data }));
+    Internal.getFlow().then(response => this.setState({ flow: response.data }));
  
   }
-
-
-
 
 
   render() {
@@ -28,9 +27,7 @@ class Home extends React.Component {
 
         <div className="row">
         <div className="col s9" id="trendingDiv">
-        <h1>testasdkfasnfjkaskbfjkabdfaljksdb</h1>
-        <h1>testasdkfasnfjkaskbfjkab</h1>
-        <h1>testasdkfasnfjkaskbfjkabdfa</h1>
+        <p>{this.state.flow.map(x => <li key={x.userId}>{`${x.name} has ${x.action} ${x.target}.`}</li>)}</p>
         </div>
           <div className="col s3">
             <div className="row">
