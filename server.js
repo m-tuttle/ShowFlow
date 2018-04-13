@@ -93,6 +93,7 @@ if (process.env.NODE_ENV === 'production') {
     db.flow.find({}).sort({'date': -1}, function(err, docs) {
       res.json(docs)
     })
+    db.flow.insert({})
   })
 
   app.get('/showshows', function(req, res) {
