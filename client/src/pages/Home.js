@@ -24,22 +24,26 @@ class Home extends React.Component {
 
 
   render() {
-    return <div id="home">
-        <h1>Home</h1>
+    return ( <div id="home">
 
         <div className="row">
-          <div className="col-sm-3 right" id="trendingDiv">
+        <div className="col s9" id="trendingDiv">
+        <h1>testasdkfasnfjkaskbfjkabdfaljksdb</h1>
+        <h1>testasdkfasnfjkaskbfjkab</h1>
+        <h1>testasdkfasnfjkaskbfjkabdfa</h1>
+        </div>
+          <div className="col s3">
+            <div className="row">
+            <div className="col s12" id="trendingDiv">
             <h4>Top Trending...</h4>
             {this.state.topTrending.map(y => (
               <div className="card horizontal" key={y._id.showid}>
                 <Link to={`/show/${y._id.showtitle}`}><div className="card-title">{y._id.showtitle}</div></Link>
               </div>
             ))}
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-sm-3 right" id="userDiv">
+            </div>
+          <div className="row">
+          <div className="col s12" id="userDiv">
             <h4>Users</h4>
             {this.state.users.map(x => (
               <div className="card horizontal" key={x._id}>
@@ -64,8 +68,14 @@ class Home extends React.Component {
             ))}
           </div>
         </div>
-      </div>;
-  }
+          </div>
+      </div>
+          
+
+        
+      </div>
+      </div>
+    )}
 }
 
-export default Home
+export default Home;

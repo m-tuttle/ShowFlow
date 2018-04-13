@@ -162,13 +162,6 @@ if (process.env.NODE_ENV === 'production') {
       );
     });
 
-  // Feed routes
-  app.get('/feed', function(req, res) {
-    db.shows.find({}, function(err, result) {
-        res.json(result)
-  })
-});
-
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, './client/build/index.html'));
 });

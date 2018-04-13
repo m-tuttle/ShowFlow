@@ -120,8 +120,8 @@ class Show extends React.Component {
                         <Col s={6}>
                             <CardPanel className="white black-text">
                                 <Row>
-                                    <p>(Progress Bar + season/episode)</p>
-                                    <ProgressBar />
+                                    <p>Your Progress</p>
+                                    <ProgressBar progress={50}/>
                                 </Row>
                             </CardPanel>
                         </Col>
