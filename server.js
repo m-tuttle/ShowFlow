@@ -121,7 +121,10 @@ if (process.env.NODE_ENV === 'production') {
     console.log(req.body);
     db.users.findAndModify({query: {"_id": mongojs.ObjectID(req.body.userId)}, update: { $set : { "shows.$[elem].showstatus" : req.body.updateStatus }}, arrayFilters: [ { "elem.showid":  req.body.showId } ] } , function(err, result) {
       if (err) throw err;
-      res.json(result);
+      db.flow.insert({'userId': req.body.userId, 'name': req.body.userName, 'date': new Date(), 'action': 'updated the watch status of', 'target' : req.body.showTitle }, function (err, result) {
+        if (err) throw err;
+        res.json(result);
+      })
     })
   });
 
