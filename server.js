@@ -89,9 +89,13 @@ if (process.env.NODE_ENV === 'production') {
   app.get('/showshows', function(req, res) {
     db.users.aggregate([ 
       {$unwind: "$shows"},
-      {$group: {_id: "$shows"}}], function(error, result) {
+      {$group: {_id: "$shows", number: {$sum: 1}}}, 
+      {$sort: {number: -1}}
+    ],
+      function(error, result) {
         res.json(result);
-      })
+      }
+    );
     })
 
   app.post('/saveshow/:save', function(req, res) {

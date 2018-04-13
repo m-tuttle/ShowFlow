@@ -19,18 +19,6 @@ class App extends Component {
         };
     }
 
-componentDidMount = () => {
-    Internal.topTrending().then(response => {
-        var autoArr = "{";
-        response.data.map(y => autoArr += (`"${y._id.showtitle}": null, `));
-        autoArr.slice(0,-1);
-        var sendStr = autoArr.slice(0,-2) + "}"
-        this.setState({ shows : JSON.parse(sendStr)})
-        
-        });
-    
-}
-
 handleLogin = (event) => {
     event.preventDefault();
     var name = document.getElementById("username").value;
@@ -39,6 +27,15 @@ handleLogin = (event) => {
         if (res.data.length > 0) {
             this.setState({loggedIn : true, userId : res.data[0]._id})
             
+                Internal.showShows().then(response => {
+                    var autoArr = "{";
+                    response.data.map(y => autoArr += (`"${y._id.showtitle}": null, `));
+                    autoArr.slice(0,-1);
+                    var sendStr = autoArr.slice(0,-2) + "}"
+                    this.setState({ shows : JSON.parse(sendStr)})
+                    
+                    });
+                
         }
         else {
             alert("Invalid login. Please try again or create a new account.");
