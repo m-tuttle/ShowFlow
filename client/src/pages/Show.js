@@ -130,7 +130,7 @@ class Show extends React.Component {
                                 <Row>
                                     <p>Friends Watching</p>
                                     <ul>
-                                    {(this.state.users.length) && this.state.users.map(elem => <li key={elem.id}><Link to={`../profile/${elem._id}`}>{elem.name}</Link></li>)}
+                                    {(this.state.users.length) && this.state.users.map(elem => <li key={elem._id}><Link to={`../profile/${elem._id}`}>{elem.name}</Link></li>)}
                                     </ul>
                                 </Row>
                             </CardPanel>
