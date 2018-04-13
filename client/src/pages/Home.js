@@ -32,11 +32,11 @@ class Home extends React.Component {
         
         <div className='card horizontal row'key={x.userId}>
         {/* Image */}
-        <img className='circle col s2' src='http://via.placeholder.com/100x100' alt={x.target} />
+        <img className='circle col s2 responsive-img' src='http://via.placeholder.com/50x150' alt={x.target} />
         {/* Action and target */}
         
           <div className='col s5'>
-          <p>{`${x.name} ${x.action} ${x.target}.`}</p>
+          <p><Link to={`/profile/${x.userId}`}>{x.name}</Link> {x.action} <Link to={(x.target==='ShowFlow') ? "/" : `/show/${x.target}`}>{x.target}</Link>.</p>
           </div>
         {/* Date */}
         <div className='col s5'>
