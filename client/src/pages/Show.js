@@ -39,7 +39,7 @@ class Show extends React.Component {
             return (
                 <div id="show">
                     <Row>
-                        <h4 className="mtop white-text">{this.state.show.name}</h4>
+                        <h4 className="mtop white-text center">{this.state.show.name}</h4>
                         <Col s={3}>
 
                             <CardPanel className="white black-text">
@@ -78,7 +78,7 @@ class Show extends React.Component {
 
                             <CardPanel className="white black-text">
                                 <Row><b>Summary</b></Row>
-                                <Row>{this.state.show.summary}</Row>
+                                <Row>{this.state.show.summary.replace(/<(?:.|\n)*?>/gm, '')}</Row>
                             </CardPanel>
                         </Col>
 
@@ -97,7 +97,7 @@ class Show extends React.Component {
                                         </tr>
                                         <tr>
                                             <td>Genres:</td>
-                                            <td>{this.state.show.genres}</td>
+                                            <td>{this.state.show.genres.join(" | ")}</td>
                                         </tr>
                                         <tr>
                                             <td>Rating:</td>
