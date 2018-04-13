@@ -27,7 +27,7 @@ class Home extends React.Component {
 
         <div className="row">
         <div className="col s9" id="trendingDiv">
-        <p>{this.state.flow.map(x => <li key={x.userId}>{`${x.name} has ${x.action} ${x.target}.`}</li>)}</p>
+        <p>{this.state.flow.map(x => <li key={x.userId}>{`${x.name} ${x.action} ${x.target}.`}</li>)}</p>
         </div>
           <div className="col s3">
             <div className="row">
