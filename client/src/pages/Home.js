@@ -8,7 +8,8 @@ class Home extends React.Component {
     super();
     this.state = {
       users: [],
-      topTrending: []
+      topTrending: [],
+      flow: []
     };
   }
 
@@ -16,21 +17,27 @@ class Home extends React.Component {
     
     Internal.showUsers().then(response => this.setState({ users: response.data }));
     Internal.topTrending().then(response => this.setState({ topTrending: response.data }));
+    Internal.getFlow().then(response => this.setState({ flow: response.data }));
  
   }
-
-
-
 
 
   render() {
     return ( <div id="home">
 
         <div className="row">
-        <div className="col s9" id="trendingDiv">
-        <h1>testasdkfasnfjkaskbfjkabdfaljksdb</h1>
-        <h1>testasdkfasnfjkaskbfjkab</h1>
-        <h1>testasdkfasnfjkaskbfjkabdfa</h1>
+        <div className="col s9">
+        <p>{this.state.flow.map(x => 
+        
+        <div className='card horizontal'key={x.userId}>
+        <img className='circle' src='http://via.placeholder.com/100x100' alt={x.target} />
+        {`${x.name} ${x.action} ${x.target}.`}
+        
+        </div>
+        
+        )}
+        
+        </p>
         </div>
           <div className="col s3">
             <div className="row">

@@ -53,7 +53,9 @@ class Profile extends React.Component {
         let userId = this.props.userId;
         let showId = event.target.getAttribute("data-update");
         let updateStatus = event.target.getAttribute("data-status");
-        Internal.updateShow({userId, showId, updateStatus}).then(() => {
+        let userName = this.state.user.name;
+        let showTitle = event.target.getAttribute("data-showname");
+        Internal.updateShow({userId, showId, updateStatus, userName, showTitle}).then(() => {
             this.componentDidMount();
         })
     }
@@ -96,7 +98,8 @@ class Profile extends React.Component {
 
                                                             {this.state.myProfile &&
                                                             <div className='card-content'>
-                                                            <a className="btn-flat activator" data-update={element.showid}>Update</a>
+                                                            <a className="btn-flat activator" data-update={element.showid}
+                                                            data-showname={element.showtitle}>Update</a>
                                                             <a className="btn-flat" data-update={element.showid} onClick={this.deleteShow}>Remove</a>
                                                             </div>}
 
@@ -106,7 +109,8 @@ class Profile extends React.Component {
                                                             onClick={this.updateShow}
                                                             className="btn waves-effect waves-light red mbot"
                                                             data-status="queued"
-                                                            data-update={element.showid}>
+                                                            data-update={element.showid}
+                                                            data-showname={element.showtitle}>
                                                                 Add to Watchlist
                     
                                                             </button>
@@ -116,6 +120,7 @@ class Profile extends React.Component {
                                                             className="btn waves-effect waves-light red mbot"
                                                             data-status="watching"
                                                             data-update={element.showid}
+                                                            data-showname={element.showtitle}
                                                             >
                                                                 Currently Watching
                                                             
@@ -126,6 +131,7 @@ class Profile extends React.Component {
                                                             className="btn waves-effect waves-light red mbot"
                                                             data-status="watched"
                                                             data-update={element.showid}
+                                                            data-showname={element.showtitle}
                                                             >
                                                                 Watched
                                                                 
@@ -158,7 +164,8 @@ class Profile extends React.Component {
 
                                                         {this.state.myProfile &&
                                                             <div className='card-content'>
-                                                            <a className="btn-flat activator" data-update={element.showid}>Update</a>
+                                                            <a className="btn-flat activator" data-update={element.showid}
+                                                            data-showname={element.showtitle}>Update</a>
                                                             <a className="btn-flat" data-update={element.showid} onClick={this.deleteShow}>Remove</a>
                                                         </div>}
 
@@ -168,7 +175,8 @@ class Profile extends React.Component {
                                                         onClick={this.updateShow}
                                                         className="btn waves-effect waves-light red mbot"
                                                         data-status="queued"
-                                                        data-update={element.showid}>
+                                                        data-update={element.showid}
+                                                        data-showname={element.showtitle}>
                                                             Add to Watchlist
                 
                                                         </button>
@@ -178,6 +186,7 @@ class Profile extends React.Component {
                                                         className="btn waves-effect waves-light red mbot"
                                                         data-status="watching"
                                                         data-update={element.showid}
+                                                        data-showname={element.showtitle}
                                                         >
                                                             Currently Watching
                                                         
@@ -188,6 +197,7 @@ class Profile extends React.Component {
                                                         className="btn waves-effect waves-light red mbot"
                                                         data-status="watched"
                                                         data-update={element.showid}
+                                                        data-showname={element.showtitle}
                                                         >
                                                             Watched
                                                             
@@ -220,7 +230,8 @@ class Profile extends React.Component {
 
                                                         {this.state.myProfile &&
                                                         <div className='card-content'>
-                                                        <a className="btn-flat activator" data-update={element.showid}>Update</a>
+                                                        <a className="btn-flat activator" data-update={element.showid}
+                                                        data-showname={element.showtitle}>Update</a>
                                                         <a className="btn-flat" data-update={element.showid} onClick={this.deleteShow}>Remove</a>
                                                         </div>}
 
@@ -230,7 +241,8 @@ class Profile extends React.Component {
                                                         onClick={this.updateShow}
                                                         className="btn waves-effect waves-light red mbot"
                                                         data-status="queued"
-                                                        data-update={element.showid}>
+                                                        data-update={element.showid}
+                                                        data-showname={element.showtitle}>
                                                             Add to Watchlist
             
                                                         </button>
@@ -240,6 +252,7 @@ class Profile extends React.Component {
                                                         className="btn waves-effect waves-light red mbot"
                                                         data-status="watching"
                                                         data-update={element.showid}
+                                                        data-showname={element.showtitle}
                                                         >
                                                             Currently Watching
                                                         
@@ -250,6 +263,7 @@ class Profile extends React.Component {
                                                         className="btn waves-effect waves-light red mbot"
                                                         data-status="watched"
                                                         data-update={element.showid}
+                                                        data-showname={element.showtitle}
                                                         >
                                                             Watched
                                                             
