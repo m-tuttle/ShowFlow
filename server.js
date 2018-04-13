@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 
 // Database configuration
 var databaseUrl = "mongodb://localhost/showflow";
-var collections = ["shows", "users"];
+var collections = ["flow", "users"];
 
 // Hook mongojs config to db variable
 var db = mongojs(databaseUrl , collections);
