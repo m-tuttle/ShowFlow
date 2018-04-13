@@ -29,7 +29,7 @@ class Show extends React.Component {
 
                             <CardPanel className="white black-text">
                                 <Row>
-                                    <img src="http://via.placeholder.com/200x200" alt="showposter" />
+                                    <img src={this.state.show.image.medium} alt="showposter" />
                                 </Row>
                             </CardPanel>
                         </Col>
