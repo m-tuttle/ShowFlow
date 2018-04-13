@@ -27,20 +27,16 @@ class Profile extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.match.params.id !== this.props.match.params.query) {
-            this.setState({ load: false });
-            if (nextProps.match.params.id !== this.props.userId) {
-                this.setState({ myProfile: false });
-            }
-            Internal.getUser(nextProps.match.params.id)
-                .then(res => this.setState({ user: res.data[0] }))
+        nextProps.match.params.id === this.props.userId ? this.setState({ myProfile: true }) : this.setState({ myProfile: false });
+        
+        Internal.getUser(nextProps.match.params.id)
+            .then(res => this.setState({ user: res.data[0] }))
                 .then(() => {
                     if (this.state.user.shows) {
                         this.setState({ load: true });
                     }
                 })
 
-        }
     }
 
     deleteShow = (event) => {
@@ -100,8 +96,8 @@ class Profile extends React.Component {
 
                                                             {this.state.myProfile &&
                                                             <div className='card-content'>
-                                                            <a class="btn-flat activator" data-update={element.showid}>Update</a>
-                                                            <a class="btn-flat" data-update={element.showid} onClick={this.deleteShow}>Remove</a>
+                                                            <a className="btn-flat activator" data-update={element.showid}>Update</a>
+                                                            <a className="btn-flat" data-update={element.showid} onClick={this.deleteShow}>Remove</a>
                                                             </div>}
 
                                                             <div className="card-reveal">
@@ -162,8 +158,8 @@ class Profile extends React.Component {
 
                                                         {this.state.myProfile &&
                                                             <div className='card-content'>
-                                                            <a class="btn-flat activator" data-update={element.showid}>Update</a>
-                                                            <a class="btn-flat" data-update={element.showid} onClick={this.deleteShow}>Remove</a>
+                                                            <a className="btn-flat activator" data-update={element.showid}>Update</a>
+                                                            <a className="btn-flat" data-update={element.showid} onClick={this.deleteShow}>Remove</a>
                                                         </div>}
 
                                                         <div className="card-reveal">
@@ -224,8 +220,8 @@ class Profile extends React.Component {
 
                                                         {this.state.myProfile &&
                                                         <div className='card-content'>
-                                                        <a class="btn-flat activator" data-update={element.showid}>Update</a>
-                                                        <a class="btn-flat" data-update={element.showid} onClick={this.deleteShow}>Remove</a>
+                                                        <a className="btn-flat activator" data-update={element.showid}>Update</a>
+                                                        <a className="btn-flat" data-update={element.showid} onClick={this.deleteShow}>Remove</a>
                                                         </div>}
 
                                                         <div className="card-reveal">

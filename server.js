@@ -72,6 +72,13 @@ if (process.env.NODE_ENV === 'production') {
     })
   })
 
+  app.get('/usersbyshow', function (req, res) {
+    db.users.find({ "shows.showtitle": req.query.title }, function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    })
+  })
+
   app.post('/createuser', function(req, res) {
     db.users.insert({'name': req.body.name, 'password': req.body.pass, 'email': req.body.email}, function (err, result) {
       if (err) throw err;
