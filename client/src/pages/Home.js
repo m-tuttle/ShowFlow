@@ -27,17 +27,25 @@ class Home extends React.Component {
 
         <div className="row">
         <div className="col s9">
-        <p>{this.state.flow.map(x => 
+        {this.state.flow.map(x => 
         
         <div className='card horizontal'key={x.userId}>
+        {/* Image */}
         <img className='circle' src='http://via.placeholder.com/100x100' alt={x.target} />
-        {`${x.name} ${x.action} ${x.target}.`}
+        {/* Action and target */}
+        <div className='row'>
+          <div className='col s6 pull-s6'>
+          <p>{`${x.name} ${x.action} ${x.target}.`}</p>
+          </div>
+        {/* Date */}
+          <div className='col s6 push-s6'>
+          <p>{new Date(x.date).toLocaleDateString("en-us")}</p>
+          </div>
+          </div>
         
         </div>
         
         )}
-        
-        </p>
         </div>
           <div className="col s3">
             <div className="row">
