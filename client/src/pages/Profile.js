@@ -65,7 +65,7 @@ class Profile extends React.Component {
             <div className="container">
                 <div className="row card-panel">
                     <div className="col s6">
-                        <img className="responsive-img left" src="http://via.placeholder.com/250x250" alt="Profile" />
+                        <img className="responsive-img left circle responsive-img" id='profpic' src="http://via.placeholder.com/250x250" alt="Profile" />
                     </div>
                     <div className="col s1"></div>
                     <div className="col s5">

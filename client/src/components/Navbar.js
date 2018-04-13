@@ -5,7 +5,7 @@ import { Icon, Autocomplete } from 'react-materialize';
 const Navbar = (props) => {
 
     return (
-        <nav>
+        <nav id='marbot'>
             <div className="nav-wrapper white">
                 <Link to='/' className="brand-logo">ShowFlow</Link>
                 <ul id="nav-mobile" className="right">

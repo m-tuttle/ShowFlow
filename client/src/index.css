@@ -38,6 +38,10 @@ nav .brand-logo, nav a, .button-collapse {
       color: #000;
     }
 
+    #profpic {
+      margin: 1%
+    }
+
     #form-wrapper {
       width: 300px;
       height: auto;
@@ -48,4 +52,8 @@ nav .brand-logo, nav a, .button-collapse {
       margin-left: -150px;
       background: rgba(168, 168, 255, 0.363);
       padding: 30px;
+    }
+
+    #marbot {
+      margin-bottom: 1%;
     }

@@ -32,7 +32,7 @@ class Home extends React.Component {
         
         <div className='card horizontal row'key={x.userId}>
         {/* Image */}
-        <img className='circle col s2 responsive-img' src='http://via.placeholder.com/50x150' alt={x.target} />
+        <img className='circle col s2 responsive-img' src='http://via.placeholder.com/150x150' alt={x.target} id='profpic'/>
         {/* Action and target */}
         
           <div className='col s5'>
