@@ -79,6 +79,14 @@ if (process.env.NODE_ENV === 'production') {
     })
   })
 
+  app.get('/showshows', function(req, res) {
+    db.users.aggregate([ 
+      {$unwind: "$shows"},
+      {$group: {_id: "$shows"}}], function(error, result) {
+        res.json(result);
+      })
+    })
+
   app.post('/saveshow/:save', function(req, res) {
     db.users.findAndModify({query: {_id: mongojs.ObjectId(req.body.userId)}, update : { $push : { "shows" : {showid : req.body.saveId, showtitle : req.body.saveTitle, showimage : req.body.saveImage, showstatus: req.body.saveStatus}}} }, function(err, result) {
       if (err) throw err;
@@ -113,15 +121,6 @@ if (process.env.NODE_ENV === 'production') {
 /////////////////////
 
 
-
-
-
-
-  // Account information
-  app.get('/account/:userid', function(req, res) {
-
-  })
-
   // Show routes
   app.get('/show/:id', function(req, res) {
     db.shows.find({
@@ -151,17 +150,6 @@ if (process.env.NODE_ENV === 'production') {
         }
       );
     });
-
-  // Test post route
-  app.post('/createshow', function(req, res) {
-    db.shows.insert({name: "Game of Thrones", rating: 10}, function(error, show) {
-      if (error) {
-        res.send(error);
-      }else {
-        res.json(show);
-      }
-    })
-  })
 
   // Feed routes
   app.get('/feed', function(req, res) {

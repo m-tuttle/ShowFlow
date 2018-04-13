@@ -15,8 +15,21 @@ class App extends Component {
             loggedIn: false,
             userId: "", 
             query: "",
+            shows: {}
         };
     }
+
+componentDidMount = () => {
+    Internal.topTrending().then(response => {
+        var autoArr = "{";
+        response.data.map(y => autoArr += (`"${y._id.showtitle}": null, `));
+        autoArr.slice(0,-1);
+        var sendStr = autoArr.slice(0,-2) + "}"
+        this.setState({ shows : JSON.parse(sendStr)})
+        
+        });
+    
+}
 
 handleLogin = (event) => {
     event.preventDefault();
@@ -74,7 +87,7 @@ render() {
         
         <Router>
         <div>
-            <Navbar handleSearchTerm={this.handleSearchTerm} handleLogOut={this.handleLogOut} query={this.state.query} userId={this.state.userId} />
+            <Navbar handleSearchTerm={this.handleSearchTerm} handleLogOut={this.handleLogOut} query={this.state.query} userId={this.state.userId} shows={this.state.shows}/>
             <Route exact path="/" component={Home} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/profile/:id" render={(props) => (<Profile userId={this.state.userId} {...props}/>)} />
