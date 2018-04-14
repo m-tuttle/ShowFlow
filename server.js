@@ -52,14 +52,14 @@ if (process.env.NODE_ENV === 'production') {
   });
 
   app.get('/checkuser', function(req, res) {
-    db.users.find(req.query, function (err, result) {
+    db.users.find(req.query, {password: 0}, function (err, result) {
       if (err) throw err;
       res.json(result);
     })
   })
 
   app.get('/getuser/:id', function(req, res) {
-    db.users.find({_id: mongojs.ObjectId(req.params.id)}, function(err, result) {
+    db.users.find({_id: mongojs.ObjectId(req.params.id)}, {password: 0}, function(err, result) {
       if (err) throw err;
       res.json(result);
     })
@@ -73,7 +73,7 @@ if (process.env.NODE_ENV === 'production') {
   })
 
   app.get('/usersbyshow', function (req, res) {
-    db.users.find({ "shows.showtitle": req.query.title }, function (err, result) {
+    db.users.find({ "shows.showtitle": req.query.title }, {password: 0}, function (err, result) {
       if (err) throw err;
       res.json(result);
     })
@@ -157,7 +157,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 
     app.get("/showallusers", function(req, res) {
-      db.users.find({},
+      db.users.find({}, {password: 0},
         function(error, result) {
           res.json(result);
         }
