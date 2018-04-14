@@ -76,10 +76,12 @@ class Profile extends React.Component {
                     </div>
                 </div >
 
+                {(this.state.load) && 
                 <div className="row card-panel">
                     <div className="col s12">
                         <Tabs className='tab-demo z-depth-1'>
-                            <Tab title="Watched">
+                            <Tab 
+                            title={`Watched (${this.state.user.shows.filter(e => e.showstatus === 'watched').length})`}>
                                 <div id="resultsDiv" className="scrollmenu">
                                     <div className="row">
                                         {(this.state.load) && this.state.user.shows.map(element => {
@@ -145,10 +147,11 @@ class Profile extends React.Component {
                                     </div>
                                 </div>
                             </Tab>
-                            <Tab title="Watching" active>
+                            <Tab 
+                            title={`Watching (${this.state.user.shows.filter(e => e.showstatus === 'watching').length})`}>
                                 <div id="resultsDiv" className="scrollmenu">
                                     <div className="row">
-                                        {(this.state.load) && this.state.user.shows.map(element => {
+                                        {this.state.user.shows.map(element => {
                                             if (element.showstatus === 'watching') {
                                                 return (
                                                     <div className=" stuff" key={element.showid}>
@@ -211,7 +214,8 @@ class Profile extends React.Component {
                                     </div>
                                 </div>
                             </Tab>
-                            <Tab title="Want to Watch">
+                            <Tab 
+                            title={`Want to Watch (${this.state.user.shows.filter(e => e.showstatus === 'queued').length})`}>
                                 <div id="resultsDiv" className="scrollmenu">
                                     <div className="row">
                                         {(this.state.load) && this.state.user.shows.map(element => {
@@ -280,6 +284,7 @@ class Profile extends React.Component {
                         </Tabs>
                     </div>
                 </div>
+                }
 
 
 
