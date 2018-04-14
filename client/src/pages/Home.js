@@ -40,7 +40,10 @@ class Home extends React.Component {
           </div>
         {/* Date */}
         <div className='col s5'>
-          <p className='right'>{new Date(x.date).toLocaleDateString("en-us")}</p>
+          <p className='right'>{new Date(x.date).toLocaleDateString("en-us", {
+                year: "numeric", month: "short",
+                day: "numeric", hour: "2-digit", minute: "2-digit"
+            })}</p>
         </div>
          
         
