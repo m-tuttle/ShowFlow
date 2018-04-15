@@ -96,7 +96,7 @@ class Show extends React.Component {
                                     <tbody>
                                         <tr>
                                             <td>Network:</td>
-                                            <td>{this.state.show.network.name}</td>
+                                            <td>{(this.state.show.network) ? this.state.show.network.name : this.state.show.webChannel.name}</td>
                                         </tr>
                                         <tr>
                                             <td>Status:</td>
