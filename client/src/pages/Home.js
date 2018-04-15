@@ -37,6 +37,7 @@ class Home extends React.Component {
         
           <div className='col s5'>
           <p><Link to={`/profile/${x.userId}`}>{x.name}</Link> {x.action} <Link to={(x.target==='ShowFlow') ? "/" : `/show/${x.target}`}>{x.target}</Link>.</p>
+          <img className='responsive-img' src='http://via.placeholder.com/100x100' alt={x.target} id='targetpic'/>
           </div>
         {/* Date */}
         <div className='col s5'>
@@ -46,7 +47,6 @@ class Home extends React.Component {
             })}</p>
         </div>
          
-        
         </div>
         
         )}
