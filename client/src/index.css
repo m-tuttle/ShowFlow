@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(249, 250, 250);
+  background-color: white;
   margin: 0;
   padding: 0;
   font-family: 'Josefin Sans', sans-serif;
@@ -54,10 +54,6 @@ nav .brand-logo, nav a, .button-collapse {
       padding: 30px;
     }
 
-<<<<<<< HEAD
     #marbot {
       margin-bottom: 1%;
     }
-=======
-
->>>>>>> c8a516085cb950c519ebf7507f9184eb5e2d711c

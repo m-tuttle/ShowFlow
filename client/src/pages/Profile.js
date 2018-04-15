@@ -2,6 +2,7 @@ import React from 'react';
 import Internal from '../utils/Internal';
 import { Link } from 'react-router-dom'
 import { Tabs, Tab } from 'react-materialize';
+import "./Profile.css";
 
 class Profile extends React.Component {
     constructor(props) {
@@ -78,7 +79,7 @@ class Profile extends React.Component {
 
                 {(this.state.load) && 
                 <div className="row card-panel">
-                    <div className="col s12">
+                    <div className="col s12 userResultsDiv">
                         <Tabs className='tab-demo z-depth-1'>
                             <Tab 
                             title={`Watched (${this.state.user.shows.filter(e => e.showstatus === 'watched').length})`}>
@@ -109,7 +110,7 @@ class Profile extends React.Component {
                                                             <span className="card-title grey-text text-darken-4 mbot">{element.showtitle}<i className="material-icons right">close</i></span>
                                                             <button
                                                             onClick={this.updateShow}
-                                                            className="btn waves-effect waves-light red mbot"
+                                                            className="btn waves-effect waves-light white-text mbot"
                                                             data-status="queued"
                                                             data-update={element.showid}
                                                             data-showname={element.showtitle}>
@@ -119,7 +120,7 @@ class Profile extends React.Component {
                                                             <br />
                                                             <button
                                                             onClick={this.updateShow}
-                                                            className="btn waves-effect waves-light red mbot"
+                                                            className="btn waves-effect waves-light white-text mbot"
                                                             data-status="watching"
                                                             data-update={element.showid}
                                                             data-showname={element.showtitle}
@@ -130,7 +131,7 @@ class Profile extends React.Component {
                                                             <br />
                                                             <button
                                                             onClick={this.updateShow}
-                                                            className="btn waves-effect waves-light red mbot"
+                                                            className="btn waves-effect waves-light white-text mbot"
                                                             data-status="watched"
                                                             data-update={element.showid}
                                                             data-showname={element.showtitle}

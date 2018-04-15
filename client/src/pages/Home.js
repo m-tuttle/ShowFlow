@@ -54,7 +54,7 @@ class Home extends React.Component {
           <div className="col s3">
             <div className="row">
             <div className="col s12" id="trendingDiv">
-            <h4>Top Trending...</h4>
+            <h4 className="white-text">Top Trending...</h4>
             {this.state.topTrending.map(y => (
               <div className="card horizontal" key={y._id.showid}>
                 <Link to={`/show/${y._id.showtitle}`}><div className="card-title">{y._id.showtitle}</div></Link>
@@ -63,7 +63,7 @@ class Home extends React.Component {
             </div>
           <div className="row">
           <div className="col s12" id="userDiv">
-            <h4>Users</h4>
+            <h4 className="white-text">Users</h4>
             {this.state.users.map(x => (
               <div className="card horizontal" key={x._id}>
                 <div className="card-image">

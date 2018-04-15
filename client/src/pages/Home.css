@@ -17,6 +17,12 @@
     width: auto;
     padding: 20px;
     background: #05668D;
+    color: #05668D;
+}
+.card{
+    background: #05668D;
+    border: 1px solid white;
+    padding: 5px;
 }
 
 div.card.horizontal.row{
