@@ -33,9 +33,9 @@ class Home extends React.Component {
         <div className="col s9">
         {this.state.flow.map(x => 
         
-        <div className='card horizontal row'key={x._id}>
+        <div className='card horizontal row' key={x._id}>
         {/* Image */}
-        <img className='circle col s2 responsive-img' src='http://via.placeholder.com/150x150' alt={x.target} id='profpic'/>
+        <img className='circle col s2 responsive-img' src={`https://robohash.org/${x.userId}png?bgset=bg2&size=150x150`} alt={x.target} id='profpic'/>
         {/* Action and target */}
         
           <div className='col s5 white-text'>
@@ -75,7 +75,7 @@ class Home extends React.Component {
                 <div className="card-image">
                   <img
                     className="image-responsive"
-                    src="http://via.placeholder.com/75x75"
+                    src={`https://robohash.org/${x._id}png?bgset=bg2&size=75x75`}
                     alt={x.name}
                   />
                 </div>
