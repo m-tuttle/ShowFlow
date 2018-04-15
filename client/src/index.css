@@ -71,3 +71,11 @@ nav .brand-logo, nav a, .button-collapse {
       height: 100px;
      
     }
+
+    a {
+      color: white;
+    }
+    a:hover, .card-title:hover {
+        color: greenyellow;
+        text-decoration: underline;
+    }

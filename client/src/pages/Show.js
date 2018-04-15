@@ -54,8 +54,8 @@ class Show extends React.Component {
         } else {
             return <div id="show">
                 <Row>
-                  <h4 className="mtop white-text center">
-                    {this.state.show.name}
+                  <h4 className="mtop center">
+                    <span className='title'>{this.state.show.name}</span>
                   </h4>
                   <Col s={3}>
                     <CardPanel className="white-text">

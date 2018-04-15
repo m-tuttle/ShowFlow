@@ -1,7 +1,6 @@
 import React from 'react';
 import "./Home.css";
 import { Link } from "react-router-dom";
-import { Row, Col } from 'react-materialize';
 import Internal from "../utils/Internal";
 import API from "../utils/API";
 
@@ -39,7 +38,7 @@ class Home extends React.Component {
         {/* Action and target */}
         
           <div className='col s5 white-text'>
-          <p><Link to={`/profile/${x.userId}`}>{x.name}</Link> {x.action} <Link to={(x.target==='ShowFlow') ? "/" : `/show/${x.target}`}>{x.target}</Link>.</p>
+          <p><Link to={`/profile/${x.userId}`}><i>{x.name}</i></Link> {x.action} <Link to={(x.target==='ShowFlow') ? "/" : `/show/${x.target}`}><i>{x.target}</i></Link>.</p>
 
           {(x.target==='ShowFlow') ? <iframe src={this.state.targetImg} width="120" height="120" frameBorder="0" className="giphy-embed right marright" allowFullScreen></iframe> : <img className='responsive-img marright right targetpic' src={x.showimg} alt={x.target} id='targetpic'/>}
           
