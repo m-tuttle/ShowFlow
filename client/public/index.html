@@ -39,10 +39,14 @@
 
         $(document).ready(function(){
           $('.tabs').tabs();
+
+          $(document).on('keyup', '#search', function (event) {
+            if (event.keyCode === 13) {
+              $('.searchKey')[0].click();
+            }
+          })
         });
-
-
-
+        
       </script>
     </body>
 </html>

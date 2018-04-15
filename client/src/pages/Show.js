@@ -29,12 +29,13 @@ class Show extends React.Component {
         event.preventDefault();
 
         let userId = this.props.userId;
+        let userName = this.props.userName;
         let saveId = event.target.parentElement.getAttribute("data-id");
         let saveTitle = event.target.parentElement.getAttribute("data-title");
         let saveImage = event.target.parentElement.getAttribute("data-image");
         let saveStatus = event.target.getAttribute("data-status");
 
-        Internal.saveShow({ userId, saveId, saveTitle, saveImage, saveStatus }).then(res => {
+        Internal.saveShow({ userId, saveId, saveTitle, saveImage, saveStatus, userName }).then(res => {
             alert(`Show updated successfully!`)
         })
     }
@@ -51,7 +52,7 @@ class Show extends React.Component {
 
                             <CardPanel className="white black-text">
                                 <Row>
-                                    <img src={this.state.show.image.medium} alt="showposter" />
+                                    <img className='responsive-img' src={this.state.show.image.medium} alt="showposter" />
                                 </Row>
                                 <Row>
                                     <Modal header={this.state.show.name} trigger={<Button>Update</Button>}>
