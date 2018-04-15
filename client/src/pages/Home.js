@@ -30,7 +30,7 @@ class Home extends React.Component {
         <div className="col s9">
         {this.state.flow.map(x => 
         
-        <div className='card horizontal row'key={x._Id}>
+        <div className='card horizontal row'key={x._id}>
         {/* Image */}
         <img className='circle col s2 responsive-img' src='http://via.placeholder.com/150x150' alt={x.target} id='profpic'/>
         {/* Action and target */}
@@ -40,7 +40,10 @@ class Home extends React.Component {
           </div>
         {/* Date */}
         <div className='col s5'>
-          <p className='right'>{new Date(x.date).toLocaleDateString("en-us")}</p>
+          <p className='right'>{new Date(x.date).toLocaleDateString("en-us", {
+                year: "numeric", month: "short",
+                day: "numeric", hour: "2-digit", minute: "2-digit"
+            })}</p>
         </div>
          
         
@@ -77,7 +80,7 @@ class Home extends React.Component {
                       <span className="card-title">{x.name}</span>{" "}
                     </Link>
                     <br />
-                    <span> I love TV shows SO much!!! </span>
+            <span>Recently added: {(x.shows) && <Link to={`show/${x.shows[x.shows.length-1].showtitle}`}>{x.shows[x.shows.length-1].showtitle}</Link>}</span>
                   </center>
                 </div>
               </div>
