@@ -112,7 +112,7 @@ class Profile extends React.Component {
                                                             <span className="card-title grey-text text-darken-4 mbot">{element.showtitle}<i className="material-icons right">close</i></span>
                                                             <button
                                                             onClick={this.updateShow}
-                                                            className="btn waves-effect waves-light white-text mbot"
+                                                            className="btn waves-effect waves-light red white-text mbot"
                                                             data-status="queued"
                                                             data-update={element.showid}
                                                             data-showname={element.showtitle}
@@ -123,7 +123,7 @@ class Profile extends React.Component {
                                                             <br />
                                                             <button
                                                             onClick={this.updateShow}
-                                                            className="btn waves-effect waves-light white-text mbot"
+                                                            className="btn waves-effect waves-light red white-text mbot"
                                                             data-status="watching"
                                                             data-update={element.showid}
                                                             data-showname={element.showtitle}
@@ -135,7 +135,7 @@ class Profile extends React.Component {
                                                             <br />
                                                             <button
                                                             onClick={this.updateShow}
-                                                            className="btn waves-effect waves-light white-text mbot"
+                                                            className="btn waves-effect waves-light red white-text mbot"
                                                             data-status="watched"
                                                             data-update={element.showid}
                                                             data-showname={element.showtitle}

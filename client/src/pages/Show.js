@@ -63,26 +63,32 @@ class Show extends React.Component {
                         <img className="responsive-img" src={this.state.show.image.medium} alt="showposter" />
                       </Row>
                       <Row>
+                        <Col s={1}>
                         <Modal header={this.state.show.name} trigger={<Button
                             >
                               Update
                             </Button>}>
+                          <div className='container' style={{width: '50%'}}>
                           <div data-id={this.state.show.id} data-title={this.state.show.name} data-image={this.state.show.image ? this.state.show.image.medium : "http://via.placeholder.com/210x295"}>
-                            <button onClick={this.addShow} className="btn waves-effect waves-light red mbot" data-status="queued">
+                            
+                            <br /> <br />
+                            <button style={{width: '100%'}} onClick={this.addShow} className="btn waves-effect waves-light red mbot" data-status="queued">
                               Add to Watchlist
                             </button>
                             <br />
 
-                            <button onClick={this.addShow} className="btn waves-effect waves-light red mbot" data-status="watching">
+                            <button style={{width: '100%'}} onClick={this.addShow} className="btn waves-effect waves-light red mbot" data-status="watching">
                               Currently Watching
                             </button>
                             <br />
 
-                            <button onClick={this.addShow} className="btn waves-effect waves-light red mbot" data-status="watched">
+                            <button style={{width: '100%'}} onClick={this.addShow} className="btn waves-effect waves-light red mbot" data-status="watched">
                               Watched
                             </button>
                           </div>
+                          </div>
                         </Modal>
+                        </Col>
                       </Row>
                     </CardPanel>
                   </Col>
