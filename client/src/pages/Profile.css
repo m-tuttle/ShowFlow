@@ -16,3 +16,11 @@ a.btn-flat{
 span.card-title{
     color: white;
 }
+
+.tabs .tab a {
+    color: white;
+}
+.tabs .tab a:hover,
+.tabs .tab a.active {
+    color: white;
+}
