@@ -132,18 +132,7 @@ class Profile extends React.Component {
                                                                 Currently Watching
                                                             
                                                             </button>
-                                                            <br />
-                                                            <button
-                                                            onClick={this.updateShow}
-                                                            className="btn waves-effect waves-light red white-text mbot"
-                                                            data-status="watched"
-                                                            data-update={element.showid}
-                                                            data-showname={element.showtitle}
-                                                            data-showimg={element.showimage}
-                                                            >
-                                                                Watched
-                                                                
-                                                            </button>
+                                                            
                                                             </div>
                                                         </div>
                                                     </div>
@@ -191,18 +180,7 @@ class Profile extends React.Component {
                                                             Add to Watchlist
                 
                                                         </button>
-                                                        <br />
-                                                        <button
-                                                        onClick={this.updateShow}
-                                                        className="btn waves-effect waves-light red mbot"
-                                                        data-status="watching"
-                                                        data-update={element.showid}
-                                                        data-showname={element.showtitle}
-                                                        data-showimg={element.showimage}
-                                                        >
-                                                            Currently Watching
                                                         
-                                                        </button>
                                                         <br />
                                                         <button
                                                         onClick={this.updateShow}
@@ -252,17 +230,7 @@ class Profile extends React.Component {
 
                                                         <div className="card-reveal">
                                                         <span className="card-title grey-text text-darken-4 mbot">{element.showtitle}<i className="material-icons right">close</i></span>
-                                                        <button
-                                                        onClick={this.updateShow}
-                                                        className="btn waves-effect waves-light red mbot"
-                                                        data-status="queued"
-                                                        data-update={element.showid}
-                                                        data-showname={element.showtitle}
-                                                        data-showimg={element.showimage}>
-                                                            Add to Watchlist
-            
-                                                        </button>
-                                                        <br />
+                                                       
                                                         <button
                                                         onClick={this.updateShow}
                                                         className="btn waves-effect waves-light red mbot"
