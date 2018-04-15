@@ -18,4 +18,12 @@
     padding: 20px;
 }
 
+div.card.horizontal.row{
+     background: #05668D;
+     color: white;
+}
+
+p{
+    color: white;
+}
 

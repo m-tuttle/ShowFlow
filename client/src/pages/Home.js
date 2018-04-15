@@ -35,12 +35,12 @@ class Home extends React.Component {
         <img className='circle col s2 responsive-img' src='http://via.placeholder.com/50x150' alt={x.target} />
         {/* Action and target */}
         
-          <div className='col s5'>
+          <div className='col s5 white-text'>
           <p><Link to={`/profile/${x.userId}`}>{x.name}</Link> {x.action} <Link to={(x.target==='ShowFlow') ? "/" : `/show/${x.target}`}>{x.target}</Link>.</p>
           </div>
         {/* Date */}
         <div className='col s5'>
-          <p className='right'>{new Date(x.date).toLocaleDateString("en-us", {
+          <p className='right white-text'>{new Date(x.date).toLocaleDateString("en-us", {
                 year: "numeric", month: "short",
                 day: "numeric", hour: "2-digit", minute: "2-digit"
             })}</p>
