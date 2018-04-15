@@ -86,7 +86,7 @@ class Home extends React.Component {
                       <span className="card-title">{x.name}</span>{" "}
                     </Link>
                     <br />
-            <span>Recently added: {(x.shows) && <Link to={`show/${x.shows[x.shows.length-1].showtitle}`}>{x.shows[x.shows.length-1].showtitle}</Link>}</span>
+            <span className="white-text">Recently added: {(x.shows) && <Link to={`show/${x.shows[x.shows.length-1].showtitle}`}>{x.shows[x.shows.length-1].showtitle}</Link>}</span>
                   </center>
                 </div>
               </div>
