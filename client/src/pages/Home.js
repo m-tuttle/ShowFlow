@@ -41,7 +41,7 @@ class Home extends React.Component {
           <div className='col s5 white-text'>
           <p><Link to={`/profile/${x.userId}`}>{x.name}</Link> {x.action} <Link to={(x.target==='ShowFlow') ? "/" : `/show/${x.target}`}>{x.target}</Link>.</p>
 
-          {(x.target==='ShowFlow') ? <iframe src={this.state.targetImg} width="120" height="120" frameBorder="0" className="giphy-embed left marleft" allowFullScreen></iframe> : <img className='responsive-img marleft left targetpic' src={x.showimg} alt={x.target} id='targetpic'/>}
+          {(x.target==='ShowFlow') ? <iframe src={this.state.targetImg} width="120" height="120" frameBorder="0" className="giphy-embed right marright" allowFullScreen></iframe> : <img className='responsive-img marright right targetpic' src={x.showimg} alt={x.target} id='targetpic'/>}
           
           <p className='marpush'>{(x.target==='ShowFlow') ? "Say hi!" : `${x.target}`}</p>
           </div>
