@@ -1,0 +1,9 @@
+div.card-panel {
+    background: #05668D;
+}
+
+#displayComments {
+    height: 250px;
+    width: auto;
+    border: 3px solid black;
+}
