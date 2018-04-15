@@ -3,7 +3,6 @@
     margin: 10px;
     height: 400px;
     width: auto;
-    border:solid 2px orange;
     overflow:scroll;
     overflow-x:hidden;
     overflow-y:scroll;
@@ -16,7 +15,6 @@
     margin: 10px;
     height: auto;
     width: auto;
-    border: solid 2px orange;
     padding: 20px;
     background: #05668D;
 }
