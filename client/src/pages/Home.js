@@ -38,18 +38,18 @@ class Home extends React.Component {
         {/* Action and target */}
         
           <div className='col s5 white-text'>
-          <p><Link to={`/profile/${x.userId}`}><i>{x.name}</i></Link> {x.action} <Link to={(x.target==='ShowFlow') ? "/" : `/show/${x.target}`}><i>{x.target}</i></Link>.</p>
+        <p><Link to={`/profile/${x.userId}`}><i>{x.name}</i></Link> {x.action} <Link to={(x.target==='ShowFlow') ? "/" : `/show/${x.target}`}><i>{x.target}</i></Link>{(x.action === 'updated the watch status of') ? <span> to <i>{x.showstatus}</i>.</span>  : '.'}</p>
 
-          {(x.target==='ShowFlow') ? <iframe src={this.state.targetImg} width="120" height="120" frameBorder="0" className="giphy-embed right marright" allowFullScreen></iframe> : <img className='responsive-img marright right targetpic' src={x.showimg} alt={x.target} id='targetpic'/>}
           
-          <p className='marpush'>{(x.target==='ShowFlow') ? "Say hi!" : `${x.target}`}</p>
+          <p className='right'>{(x.target==='ShowFlow') ? "Say hi!" : `${x.target}`}</p>
           </div>
         {/* Date */}
         <div className='col s5'>
           <p className='right white-text'>{new Date(x.date).toLocaleDateString("en-us", {
                 year: "numeric", month: "short",
                 day: "numeric", hour: "2-digit", minute: "2-digit"
-            })}</p>
+            })}</p><br /><br />
+            {(x.target==='ShowFlow') ? <iframe src={this.state.targetImg} width="120" height="120" frameBorder="0" className="giphy-embed" allowFullScreen></iframe> : <img className='responsive-img targetpic' src={x.showimg} alt={x.target} id='targetpic'/>}
         </div>
          
         </div>
