@@ -32,11 +32,12 @@ class Home extends React.Component {
         
         <div className='card horizontal row'key={x._id}>
         {/* Image */}
-        <img className='circle col s2 responsive-img' src='http://via.placeholder.com/50x150' alt={x.target} />
+        <img className='circle col s2 responsive-img' src='http://via.placeholder.com/150x150' alt={x.target} id='profpic'/>
         {/* Action and target */}
         
           <div className='col s5 white-text'>
           <p><Link to={`/profile/${x.userId}`}>{x.name}</Link> {x.action} <Link to={(x.target==='ShowFlow') ? "/" : `/show/${x.target}`}>{x.target}</Link>.</p>
+          <img className='responsive-img' src='http://via.placeholder.com/100x100' alt={x.target} id='targetpic'/>
           </div>
         {/* Date */}
         <div className='col s5'>
@@ -46,7 +47,6 @@ class Home extends React.Component {
             })}</p>
         </div>
          
-        
         </div>
         
         )}

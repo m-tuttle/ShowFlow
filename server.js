@@ -108,7 +108,7 @@ if (process.env.NODE_ENV === 'production') {
     })
 
   app.post('/saveshow/:save', function(req, res) {
-    db.users.findAndModify({query: {_id: mongojs.ObjectId(req.body.userId)}, update : { $push : { "shows" : {showid : req.body.saveId, showtitle : req.body.saveTitle, showimage : req.body.saveImage, showstatus: req.body.saveStatus}}} }, function(err, result) {
+    db.users.findAndModify({query: {_id: mongojs.ObjectId(req.body.userId)}, update : { $addToSet : { "shows" : { showid : req.body.saveId, showtitle : req.body.saveTitle, showimage : req.body.saveImage, showstatus: req.body.saveStatus}}} }, function(err, result) {
       if (err) throw err;
       db.flow.insert({'userId': req.body.userId, 'name': req.body.userName, 'date': new Date(), 'action': req.body.saveStatus, 'target' : req.body.saveTitle }, function (err, result) {
         if (err) throw err;
