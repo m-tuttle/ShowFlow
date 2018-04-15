@@ -1,5 +1,6 @@
 #userDiv{
     margin-right: 5%;
+    margin: 10px;
     height: 400px;
     width: auto;
     border:solid 2px orange;
@@ -7,15 +8,25 @@
     overflow-x:hidden;
     overflow-y:scroll;
     padding: 20px;
-    
+    background: #05668D;
 }
 
 #trendingDiv {
     margin-right: 5%;
+    margin: 10px;
     height: auto;
     width: auto;
     border: solid 2px orange;
     padding: 20px;
+    background: #05668D;
 }
 
+div.card.horizontal.row{
+     background: #05668D;
+     color: white;
+}
+
+p{
+    color: white;
+}
 

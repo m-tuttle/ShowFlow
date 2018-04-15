@@ -50,7 +50,7 @@ class Search extends React.Component {
         <div id="resultsDiv" className="scrollmenu">
           <div className="row">
             {this.state.shows.map(x => (
-              <div className=" stuff" key={x.show.id}>
+              <div className="stuff" key={x.show.id}>
                 <div className="card">
                   <div className="card-image">
                     <center>
