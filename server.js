@@ -82,9 +82,9 @@ if (process.env.NODE_ENV === 'production') {
   app.post('/createuser', function(req, res) {
     db.users.insert({'name': req.body.name, 'password': req.body.pass, 'email': req.body.email}, function (err, result) {
       if (err) throw err;
+      res.json(result);
       db.flow.insert({'userId': result._id, 'name': result.name, 'date': new Date(), 'action': 'joined', 'target' : 'ShowFlow' }, function (err, result) {
         if (err) throw err;
-        res.json(result);
       })
     })
   })
