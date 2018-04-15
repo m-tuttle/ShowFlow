@@ -54,10 +54,20 @@ nav .brand-logo, nav a, .button-collapse {
       padding: 30px;
     }
 
-<<<<<<< HEAD
     #marbot {
       margin-bottom: 1%;
     }
-=======
 
->>>>>>> c8a516085cb950c519ebf7507f9184eb5e2d711c
+    .marleft {
+      margin-left: 10%;
+    }
+
+    .marpush {
+      margin-left: 40%;
+    }
+
+    .targetpic {
+      width: 100px;
+      height: 100px;
+     
+    }

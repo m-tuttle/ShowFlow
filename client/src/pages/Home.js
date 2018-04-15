@@ -3,6 +3,7 @@ import "./Home.css";
 import { Link } from "react-router-dom";
 import { Row, Col } from 'react-materialize';
 import Internal from "../utils/Internal";
+import API from "../utils/API";
 
 class Home extends React.Component {
   constructor() {
@@ -10,7 +11,8 @@ class Home extends React.Component {
     this.state = {
       users: [],
       topTrending: [],
-      flow: []
+      flow: [],
+      targetImg: ''
     };
   }
 
@@ -19,6 +21,7 @@ class Home extends React.Component {
     Internal.showUsers().then(response => this.setState({ users: response.data }));
     Internal.topTrending().then(response => this.setState({ topTrending: response.data }));
     Internal.getFlow().then(response => this.setState({ flow: response.data }));
+    API.sayHiGif().then(res => this.setState({ targetImg: res.data.data[0].embed_url}));
  
   }
 
@@ -37,7 +40,10 @@ class Home extends React.Component {
         
           <div className='col s5 white-text'>
           <p><Link to={`/profile/${x.userId}`}>{x.name}</Link> {x.action} <Link to={(x.target==='ShowFlow') ? "/" : `/show/${x.target}`}>{x.target}</Link>.</p>
-          <img className='responsive-img' src='http://via.placeholder.com/100x100' alt={x.target} id='targetpic'/>
+
+          {(x.target==='ShowFlow') ? <iframe src={this.state.targetImg} width="100" height="100" frameBorder="0" className="giphy-embed left marleft" allowFullScreen></iframe> : <img className='responsive-img marleft left targetpic' src={x.showimg} alt={x.target} id='targetpic'/>}
+          
+          <p className='marpush'>{(x.target==='ShowFlow') ? "Say hi!" : `${x.target}`}</p>
           </div>
         {/* Date */}
         <div className='col s5'>
