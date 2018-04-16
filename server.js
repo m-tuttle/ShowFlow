@@ -125,8 +125,9 @@ if (process.env.NODE_ENV === 'production') {
     })
   });
 
-  app.post('/updateshow/:update', function(req, res) {
-    db.users.findAndModify({query: {"_id": mongojs.ObjectID(req.body.userId)}, update: { $set : { "shows.$[elem].showstatus" : req.body.updateStatus }}, arrayFilters: [ { "elem.showid":  req.body.showId } ] } , function(err, result) {
+  app.post('/updateshow', function(req, res) {
+    console.log(req.body);
+    db.users.update({"_id": mongojs.ObjectID(req.body.userId), "shows.showid" : req.body.showId}, { $set : { "shows.$.showstatus" : req.body.updateStatus }} , function(err, result) {
       if (err) throw err;
       db.flow.insert({'userId': req.body.userId, 'name': req.body.userName, 'date': new Date(), 'action': 'updated the watch status of', 'target' : req.body.showTitle, 'showstatus': req.body.updateStatus, 'showimg' : req.body.showImage }, function (err, result) {
         if (err) throw err;
@@ -166,16 +167,6 @@ if (process.env.NODE_ENV === 'production') {
 
 
 /////////////////////
-
-
-  // Show routes
-  app.get('/show/:id', function(req, res) {
-    db.shows.find({
-      "_id": mongojs.ObjectID(req.params.id)
-    }, function(error, result){
-        res.json(result);
-    })
-  });
 
     app.get("/showallusers", function(req, res) {
       db.users.find({}, {password: 0},

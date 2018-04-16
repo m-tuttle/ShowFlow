@@ -33,8 +33,8 @@ const Internal = {
     return axios.get('/toptrending/');
   },
 
-  updateShow: (show) => {
-    return axios.post(`/updateshow/${show}`, show)
+  updateShow: show => {
+    return axios.post('/updateshow', show)
   },
 
   deleteShow: (show) => {
