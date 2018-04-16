@@ -67,7 +67,7 @@ class Profile extends React.Component {
             <div className="container">
                 <div className="row card-panel">
                     <div className="col s6">
-                        <img className="responsive-img left circle responsive-img" id='profpic' src={`https://robohash.org/${this.props.userId}png?bgset=bg2&size=250x250`} alt="Profile" />
+                        <img className="responsive-img left circle responsive-img" id='profpic' src={`https://robohash.org/${this.state.user._id}png?bgset=bg2&size=250x250`} alt="Profile" />
                     </div>
                     <div className="col s1"></div>
                     <div className="col s5">

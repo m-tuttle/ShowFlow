@@ -34,7 +34,7 @@ class Home extends React.Component {
         
         <div className='card horizontal row' key={x._id}>
         {/* Image */}
-        <img className='circle col s2 responsive-img' src={`https://robohash.org/${x.userId}png?bgset=bg2&size=150x150`} alt={x.target} id='profpic'/>
+        <img className='circle col s2 responsive-img' src={`https://robohash.org/${x.userId}png?bgset=bg2&size=200x150`} alt={x.target} id='profpic'/>
         {/* Action and target */}
         
           <div className='col s5 white-text'>
