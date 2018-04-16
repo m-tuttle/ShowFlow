@@ -135,18 +135,6 @@ if (process.env.NODE_ENV === 'production') {
 
     })
   });
-
-    app.post('/updateshow/:update', function(req, res) {
-    db.users.findAndModify({query: {"_id": mongojs.ObjectID(req.body.userId)}, update: { $set : { "shows.$[elem].showstatus" : req.body.updateStatus }}, arrayFilters: [ { "elem.showid":  req.body.showId } ] } , function(err, result) {
-      if (err) throw err;
-      db.flow.insert({'userId': req.body.userId, 'name': req.body.userName, 'date': new Date(), 'action': 'updated the watch status of', 'target' : req.body.showTitle, 'showstatus': req.body.updateStatus, 'showimg' : req.body.showImage }, function (err, result) {
-        if (err) throw err;
-        res.json(result);
-      })
-
-    })
-  });
-
   
   app.post('/savecomments', function(req, res){
     db.flow.insert({...req.body, date : new Date() }, function(err, result) {
