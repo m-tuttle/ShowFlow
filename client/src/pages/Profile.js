@@ -58,7 +58,7 @@ class Profile extends React.Component {
         let showTitle = event.target.getAttribute("data-showname");
         let showImage = event.target.getAttribute("data-showimg");
         Internal.updateShow({userId, showId, updateStatus, userName, showTitle, showImage}).then(() => {
-            this.componentDidMount();
+            console.log('success');
         })
     }
 
