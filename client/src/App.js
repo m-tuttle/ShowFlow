@@ -7,6 +7,13 @@ import Show from './pages/Show';
 import Search from './pages/Search';
 import Navbar from './components/Navbar';
 import Internal from './utils/Internal';
+import Background from './images/showflowlogin.jpg'
+
+var sectionStyle = {
+    width: "100%",
+    height: "900px",
+    backgroundImage: `url(${Background})`
+  };
 
 class App extends Component {
     constructor() {
@@ -65,9 +72,10 @@ render() {
 
     if(!this.state.loggedIn) {
         return (
-
+            <div>
+            <section style={ sectionStyle } />
             <Login handleLogin={this.handleLogin} handleCreateUser={this.handleCreateUser}/>
-
+            </div>
         )
     } 
     else {

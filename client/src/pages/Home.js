@@ -49,7 +49,7 @@ class Home extends React.Component {
                 year: "numeric", month: "short",
                 day: "numeric", hour: "2-digit", minute: "2-digit"
             })}</p><br /><br />
-            {(x.target==='ShowFlow') ? <iframe src={this.state.targetImg} width="120" height="120" frameBorder="0" className="giphy-embed" allowFullScreen></iframe> : <img className='responsive-img targetpic' src={x.showimg} alt={x.target} id='targetpic'/>}
+            {(x.target==='ShowFlow') ? <iframe title='showtitle' src={this.state.targetImg} width="120" height="120" frameBorder="0" className="giphy-embed" allowFullScreen></iframe> : <img className='responsive-img targetpic' src={x.showimg} alt={x.target} id='targetpic'/>}
         </div>
          
         </div>
