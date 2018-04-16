@@ -149,18 +149,26 @@ if (process.env.NODE_ENV === 'production') {
 
   
   app.post('/savecomments', function(req, res){
-    db.flow.insert(req.body, function(err, result) {
-      if (err) throw err;
-      res.json(result)
-    })
+    console.log(req.body);
   });
 
   app.get('/comments/:show', function(req, res) {
-    db.flow.find({'target' : req.params.show, 'action' : 'commented on' }), function(err, docs) {
-      console.log(docs);
+    console.log(req.params.show + ' parrrr')
+    db.users.find({'shows' : { $elemMatch : { 'showtitle': req.params.show}}}, function(err, docs) {
+      console.log(docs + '155')
       res.json(docs)
-    }
+    })
   })
+
+  app.post('/comments/:show', function(req, res) {
+    db.users.findAndModify({query: {'_id': mongojs.ObjectId(req.body.userId), 'shows' : { $elemMatch : {'showtitle': req.body.showTitle}}}, update : { $push : { 'shows.$.showcomments' : req.body.commentText }}}, function(err, result) {
+      if (err) throw err;
+      console.log(result + ' 164')
+      res.json(result);
+  })
+});
+
+
 
 /////////////////////
 
