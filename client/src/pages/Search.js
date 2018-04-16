@@ -37,11 +37,21 @@ class Search extends React.Component {
     let saveImage = event.target.parentElement.getAttribute("data-image");
     let saveStatus = event.target.getAttribute("data-status");
     let userName = this.props.userName;
+
+    Internal.getUsersByShow(saveTitle).then(res => { 
+      if(res.data.filter( e => e._id === userId).length === 0) {
     
-    Internal.saveShow({userId, saveId, saveTitle, saveImage, saveStatus, userName}).then(res => {
+      Internal.saveShow({userId, saveId, saveTitle, saveImage, saveStatus, userName}).then(res => {
+        console.log(res);
         alert(`Show updated successfully!`)
-  })
-}
+      })
+
+      } else {
+        alert('You have already added this show.')
+
+      } 
+    })
+  }
   
     render() {
       return (
