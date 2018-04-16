@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import "./Navbar.css";
-import { Icon, Autocomplete } from 'react-materialize';
+import { Icon } from 'react-materialize';
 
 const Navbar = (props) => {
 
@@ -19,7 +19,7 @@ const Navbar = (props) => {
           </Link>
         </li>
         <li>
-          <Autocomplete className="white-text" title="Search" type="text" id="search" onChange={props.handleSearchTerm} />
+          <input className="white-text" title="Search" type="text" id="search" onChange={props.handleSearchTerm} />
         </li>
         <li>
           <Link to="/home" className="white-text">
