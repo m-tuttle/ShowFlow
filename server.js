@@ -200,7 +200,7 @@ if (process.env.NODE_ENV === 'production') {
     app.get("/toptrending", function(req, res) {
       db.users.aggregate([ 
         {$unwind: "$shows"},
-        {$group: {_id: "$shows", number: {$sum: 1}}}, 
+        {$group: { _id : "$shows.showtitle", number: {$sum: 1}}}, 
         {$sort: {number: -1}}, 
         {$limit:5}
       ],

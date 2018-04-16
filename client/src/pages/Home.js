@@ -61,8 +61,8 @@ class Home extends React.Component {
             <div className="col s12" id="trendingDiv">
             <h4 className="white-text">Top Trending...</h4>
             {this.state.topTrending.map(y => (
-              <div className="card horizontal" key={y._id.showid + Math.random()}>
-                <Link to={`/show/${y._id.showtitle}`}><div className="card-title">{y._id.showtitle}</div></Link>
+              <div className="card horizontal" key={y._id}>
+                <Link to={`/show/${y._id}`}><div className="card-title">{y._id}</div></Link>
               </div>
             ))}
             </div>

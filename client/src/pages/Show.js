@@ -68,19 +68,24 @@ class Show extends React.Component {
 
     submitComment = event => {
         event.preventDefault();
+        var comment = document.getElementById("commentText").value;
+        if (comment !== "") {
 
         var target = this.state.show.name;
         var userId = this.props.userId;
         var name = this.props.userName;
         var action = 'commented on';
         var showimg = this.state.show.image.medium;
-        var comment = document.getElementById("commentText").value;
+        
 
-        Internal.postComment({target, userId, name, action, showimg, comment}).then(
-          res => alert('Comment added!')
-        );
+        Internal.postComment({target, userId, name, action, showimg, comment});
         
         document.getElementById('subform').reset();
+      }
+
+      else {
+        alert('Cannot submit empty comment.')
+      }
 
     }
 
@@ -205,7 +210,7 @@ class Show extends React.Component {
                       <div id="showCommentDiv">
                         <div id="displayComments">
                           {this.state.comments.map( x => 
-                          <div className='card horizontal' key={x._id}>
+                          <div className='card horizontal commentCard' key={x._id}>
                           <div className='card-stacked'>
                             {x.comment}
                             
