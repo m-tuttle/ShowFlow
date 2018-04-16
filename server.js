@@ -149,10 +149,7 @@ if (process.env.NODE_ENV === 'production') {
 
   
   app.post('/savecomments', function(req, res){
-    db.flow.insert(req.body, function(err, result) {
-      if (err) throw err;
-      res.json(result)
-    })
+    console.log(req.body);
   });
 
   app.get('/comments/:show', function(req, res) {
@@ -161,7 +158,10 @@ if (process.env.NODE_ENV === 'production') {
       console.log(docs);
       res.json(docs)
     })
-  })
+  });
+
+
+
 
 /////////////////////
 
