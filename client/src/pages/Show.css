@@ -13,3 +13,7 @@ div.card-panel {
     overflow-y: scroll;
     color: white;
 }
+
+.commentCard {
+    width: 98.5%;
+}
