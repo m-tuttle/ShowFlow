@@ -33,8 +33,12 @@ class Show extends React.Component {
             })
 
 
-        // this.interval = setInterval(() => 
-        //   console.log('hi'), 1000);
+        this.interval = setInterval(() => 
+        Internal.getComments(this.props.match.params.name)
+        .then(res =>  {
+          console.log(res + ' showjs');
+          this.setState({comments : res.data})
+        }), 1000);
 
       }
     
