@@ -150,7 +150,12 @@ if (process.env.NODE_ENV === 'production') {
   
   app.post('/savecomments', function(req, res){
     console.log(req.body);
-  });
+    db.flow.insert(req.body, function(err, result) {
+    if (err) throw err;
+    res.json(result)
+    })
+  })
+
 
   app.get('/comments/:show', function(req, res) {
     console.log(req.params.show);
