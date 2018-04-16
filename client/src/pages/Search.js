@@ -46,7 +46,7 @@ class Search extends React.Component {
       })
 
       } else {
-        alert('You have already added this show.')
+        alert('You have already added this show. Please visit your profile to update your status.')
 
       } 
     })

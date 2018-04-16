@@ -73,7 +73,10 @@ class Profile extends React.Component {
                     <div className="col s5">
                         {(this.state.myProfile) && <h3>My Profile</h3>}
                         <ul>
-                            <li><h5>{this.state.user.name}</h5></li>
+                            <li><h5>{this.state.user.name}</h5></li>    
+                            <li>
+                             <span className="white-text">Recently added: {(this.state.user.shows && this.state.user.shows.length) && this.state.user.shows[this.state.user.shows.length-1].showtitle}</span>
+                            </li>
                         </ul>
                     </div>
                 </div >
