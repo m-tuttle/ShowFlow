@@ -8,6 +8,8 @@ div.card-panel {
 
 #displayComments {
     height: 250px;
-    width: auto;
+    width: 100%;
     border: 3px solid black;
+    overflow-y: scroll;
+    color: white;
 }

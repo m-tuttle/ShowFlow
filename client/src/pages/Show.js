@@ -4,13 +4,16 @@ import Internal from '../utils/Internal';
 import API from '../utils/API';
 import { Link } from 'react-router-dom';
 import "./Show.css";
+import { setInterval, clearInterval } from 'timers';
 
 class Show extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             show: {},
-            users: []
+            users: [],
+            comment: [],
+            timer: false
         }
     }
 
@@ -23,8 +26,33 @@ class Show extends React.Component {
             .then(res => {
                 this.setState({ users: res.data })
             })
+        Internal.getComments(this.props.match.params.name)
+            .then(res =>  {
+              var dbComments = [];
+              console.log(res.data.length + ' 32');
+              console.log(res.data[0].shows.length + ' 33')
+              if(res.data[0].shows[0].length !== undefined) {
+              for (var i = 0; i < res.data.length; i++) {
+                for (var j = 0; j < res.data[i].shows.length; j++) {
+                    for (var k = 0; k < res.data[i].shows[j].length; k++) {
+                      dbComments.push(res.data[i].shows[j].showcomments[k])
+                      console.log('made it')
+                    }
+                }
+              }}
+              console.log(dbComments);
+              this.setState({ comment: dbComments })
+            })
+        this.interval = setInterval(() => 
+          console.log('hi'), 1000);
 
+      }
+    
+    componentWillUnmount() {
+      setTimeout(function() {clearInterval(this.interval)}.bind(this), 1000);
     }
+
+    
 
     addShow = event => {
         event.preventDefault();
@@ -52,7 +80,10 @@ class Show extends React.Component {
         event.preventDefault();
         var text = document.getElementById("commentText");
         var commentText = text.value;
-        document.getElementById("displayComments").append(commentText + `\n`);
+        let userId = this.props.userId;
+        let showTitle = this.props.match.params.name;
+        Internal.postComment({userId, showTitle, commentText}).then(res => {
+        alert('Comment Added!')});
     }
 
     render() {
@@ -176,7 +207,11 @@ class Show extends React.Component {
                   <Col s={8}>
                     <Row>
                       <div id="showCommentDiv">
-                        <div id="displayComments" />
+                        <div id="displayComments">
+                          {this.state.comment.map( x => this.state.comment[x].shows.map( y => (<div className='card horizontal' key={y._id}>
+                          <div className='card-stacked'><p className='right'>{y.showtitle}</p></div>
+                          </div>)))}
+                          </div>
                         <form>
                           <input type="text" placeholder="comment field" id="commentText" />
                           <br />
@@ -184,7 +219,7 @@ class Show extends React.Component {
                             Submit
                           </button>
                         </form>
-                      </div>
+                        </div>
                     </Row>
                   </Col>
                 </Row>
