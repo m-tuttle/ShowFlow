@@ -107,7 +107,7 @@ if (process.env.NODE_ENV === 'production') {
     );
     })
 
-  app.post('/saveshow/:save', function(req, res) {
+  app.post('/saveshow', function(req, res) {
     db.users.findAndModify({query: {_id: mongojs.ObjectId(req.body.userId)}, update : { $addToSet : { "shows" : { showid : req.body.saveId, showtitle : req.body.saveTitle, showimage : req.body.saveImage, showstatus: req.body.saveStatus}}} }, function(err, result) {
       if(result.shows !== undefined) {
           if(result.shows.filter(e => e.showid === req.body.saveId).length === 0) {
@@ -151,7 +151,7 @@ if (process.env.NODE_ENV === 'production') {
     })
   });
 
-  app.delete('/deleteshow/:delete', function(req, res){
+  app.delete('/deleteshow', function(req, res){
     db.users.update({'_id': mongojs.ObjectID(req.query.userId)}, { $pull : { 'shows' : { 'showid' : req.query.saveId }}
     }, function(error, removed) {
       if (error) {
