@@ -18,11 +18,11 @@ const Internal = {
   },
 
   saveShow: show => {
-    return axios.post(`/saveshow/${show}`, show);
+    return axios.post(`/saveshow`, show);
   },
 
   showUsers: () => {
-    return axios.get('/showallusers/');
+    return axios.get('/showallusers');
   },
 
   showShows: () => {
@@ -30,7 +30,7 @@ const Internal = {
   },
     
   topTrending: () => {
-    return axios.get('/toptrending/');
+    return axios.get('/toptrending');
   },
 
   updateShow: show => {
@@ -38,7 +38,7 @@ const Internal = {
   },
 
   deleteShow: (show) => {
-    return axios.delete(`/deleteshow/${show}`, { params: show })
+    return axios.delete('/deleteshow', { params: show })
   },
 
   getUsersByShow: (title) => {
