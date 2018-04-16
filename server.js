@@ -91,7 +91,6 @@ if (process.env.NODE_ENV === 'production') {
 
   app.get('/flow', function(req, res) {
     db.flow.find({}).sort({'date': -1}, function(err, docs) {
-      console.log(docs);
       res.json(docs)
     })
   })
@@ -110,28 +109,35 @@ if (process.env.NODE_ENV === 'production') {
 
   app.post('/saveshow/:save', function(req, res) {
     db.users.findAndModify({query: {_id: mongojs.ObjectId(req.body.userId)}, update : { $addToSet : { "shows" : { showid : req.body.saveId, showtitle : req.body.saveTitle, showimage : req.body.saveImage, showstatus: req.body.saveStatus}}} }, function(err, result) {
-      if (err) throw err;
-      db.flow.insert({'userId': req.body.userId, 'name': req.body.userName, 'date': new Date(), 'action': req.body.saveStatus, 'target' : req.body.saveTitle, 'showimg' : req.body.saveImage }, function (err, result) {
-        if (err) throw err;
-        res.json(result);
-      })
+      if(result.shows !== undefined) {
+          if(result.shows.filter(e => e.showid === req.body.saveId).length === 0) {
+          db.flow.insert({'userId': req.body.userId, 'name': req.body.userName, 'date': new Date(), 'action': req.body.saveStatus, 'target' : req.body.saveTitle, 'showimg' : req.body.saveImage }, function (err, showresult) {
+          res.json(showresult);
+          })
+          } 
+      } else {
+        db.flow.insert({'userId': req.body.userId, 'name': req.body.userName, 'date': new Date(), 'action': req.body.saveStatus, 'target' : req.body.saveTitle, 'showimg' : req.body.saveImage }, function (err, showresult) {
+          if (err) throw err;
+          res.json(showresult);
+          })
+      }
+
     })
   });
 
   app.post('/updateshow/:update', function(req, res) {
-    console.log(req.body);
     db.users.findAndModify({query: {"_id": mongojs.ObjectID(req.body.userId)}, update: { $set : { "shows.$[elem].showstatus" : req.body.updateStatus }}, arrayFilters: [ { "elem.showid":  req.body.showId } ] } , function(err, result) {
       if (err) throw err;
-      db.flow.insert({'userId': req.body.userId, 'name': req.body.userName, 'date': new Date(), 'action': 'updated the watch status of', 'target' : req.body.showTitle, 'showimg' : req.body.showImage }, function (err, result) {
+      db.flow.insert({'userId': req.body.userId, 'name': req.body.userName, 'date': new Date(), 'action': 'updated the watch status of', 'target' : req.body.showTitle, 'showstatus': req.body.updateStatus, 'showimg' : req.body.showImage }, function (err, result) {
         if (err) throw err;
         res.json(result);
       })
+
     })
   });
 
   
   app.delete('/deleteshow/:delete', function(req, res){
-    console.log(req.query.userId);
     db.users.update({"_id": mongojs.ObjectID(req.query.userId)}, { $pull : { "shows" : { "showid" : req.query.saveId }}
     }, function(error, removed) {
       if (error) {

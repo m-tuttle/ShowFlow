@@ -38,8 +38,15 @@ class Show extends React.Component {
         let saveImage = event.target.parentElement.getAttribute("data-image");
         let saveStatus = event.target.getAttribute("data-status");
 
-        Internal.saveShow({ userId, saveId, saveTitle, saveImage, saveStatus, userName }).then(res => {
+        Internal.getUsersByShow(saveTitle).then(res => { 
+          if(res.data.filter( e => e._id === userId).length === 0) {
+        
+          Internal.saveShow({userId, saveId, saveTitle, saveImage, saveStatus, userName}).then(res => {
             alert(`Show updated successfully!`)
+          })
+          } else {
+            alert('You have already added this show.')
+          } 
         })
     }
 
@@ -59,8 +66,8 @@ class Show extends React.Component {
         } else {
             return <div id="show">
                 <Row>
-                  <h4 className="mtop white-text center">
-                    {this.state.show.name}
+                  <h4 className="mtop center">
+                    <span className='title'>{this.state.show.name}</span>
                   </h4>
                   <Col s={3}>
                     <CardPanel className="white-text">
@@ -68,26 +75,32 @@ class Show extends React.Component {
                         <img className="responsive-img" src={this.state.show.image.medium} alt="showposter" />
                       </Row>
                       <Row>
-                        <Modal header={this.state.show.name} trigger={<Button
+                        <Col s={1}>
+                        <Modal header={this.state.show.name} trigger={<Button className='white blue-text'
                             >
                               Update
                             </Button>}>
+                          <div className='container' style={{width: '50%'}}>
                           <div data-id={this.state.show.id} data-title={this.state.show.name} data-image={this.state.show.image ? this.state.show.image.medium : "http://via.placeholder.com/210x295"}>
-                            <button onClick={this.addShow} className="btn waves-effect waves-light red mbot" data-status="queued">
+                            
+                            <br /> <br />
+                            <button style={{width: '100%'}} onClick={this.addShow} className="btn waves-effect waves-light red mbot" data-status="queued">
                               Add to Watchlist
                             </button>
                             <br />
 
-                            <button onClick={this.addShow} className="btn waves-effect waves-light red mbot" data-status="watching">
+                            <button style={{width: '100%'}} onClick={this.addShow} className="btn waves-effect waves-light red mbot" data-status="watching">
                               Currently Watching
                             </button>
                             <br />
 
-                            <button onClick={this.addShow} className="btn waves-effect waves-light red mbot" data-status="watched">
+                            <button style={{width: '100%'}} onClick={this.addShow} className="btn waves-effect waves-light red mbot" data-status="watched">
                               Watched
                             </button>
                           </div>
+                          </div>
                         </Modal>
+                        </Col>
                       </Row>
                     </CardPanel>
                   </Col>

@@ -1,7 +1,6 @@
 import React from 'react';
 import "./Home.css";
 import { Link } from "react-router-dom";
-import { Row, Col } from 'react-materialize';
 import Internal from "../utils/Internal";
 import API from "../utils/API";
 
@@ -33,24 +32,24 @@ class Home extends React.Component {
         <div className="col s9">
         {this.state.flow.map(x => 
         
-        <div className='card horizontal row'key={x._id}>
+        <div className='card horizontal row' key={x._id}>
         {/* Image */}
-        <img className='circle col s2 responsive-img' src='http://via.placeholder.com/150x150' alt={x.target} id='profpic'/>
+        <img className='circle col s2 responsive-img' src={`https://robohash.org/${x.userId}png?bgset=bg2&size=150x150`} alt={x.target} id='profpic'/>
         {/* Action and target */}
         
           <div className='col s5 white-text'>
-          <p><Link to={`/profile/${x.userId}`}>{x.name}</Link> {x.action} <Link to={(x.target==='ShowFlow') ? "/" : `/show/${x.target}`}>{x.target}</Link>.</p>
+        <p><Link to={`/profile/${x.userId}`}><i>{x.name}</i></Link> {x.action} <Link to={(x.target==='ShowFlow') ? "/" : `/show/${x.target}`}><i>{x.target}</i></Link>{(x.action === 'updated the watch status of') ? <span> to <i>{x.showstatus}</i>.</span>  : '.'}</p>
 
-          {(x.target==='ShowFlow') ? <iframe src={this.state.targetImg} width="120" height="120" frameBorder="0" className="giphy-embed left marleft" allowFullScreen></iframe> : <img className='responsive-img marleft left targetpic' src={x.showimg} alt={x.target} id='targetpic'/>}
           
-          <p className='marpush'>{(x.target==='ShowFlow') ? "Say hi!" : `${x.target}`}</p>
+          <p className='right'>{(x.target==='ShowFlow') ? "Say hi!" : `${x.target}`}</p>
           </div>
         {/* Date */}
         <div className='col s5'>
           <p className='right white-text'>{new Date(x.date).toLocaleDateString("en-us", {
                 year: "numeric", month: "short",
                 day: "numeric", hour: "2-digit", minute: "2-digit"
-            })}</p>
+            })}</p><br /><br />
+            {(x.target==='ShowFlow') ? <iframe src={this.state.targetImg} width="120" height="120" frameBorder="0" className="giphy-embed" allowFullScreen></iframe> : <img className='responsive-img targetpic' src={x.showimg} alt={x.target} id='targetpic'/>}
         </div>
          
         </div>
@@ -62,7 +61,7 @@ class Home extends React.Component {
             <div className="col s12" id="trendingDiv">
             <h4 className="white-text">Top Trending...</h4>
             {this.state.topTrending.map(y => (
-              <div className="card horizontal" key={y._id.showid}>
+              <div className="card horizontal" key={y._id.showid + Math.random()}>
                 <Link to={`/show/${y._id.showtitle}`}><div className="card-title">{y._id.showtitle}</div></Link>
               </div>
             ))}
@@ -75,7 +74,7 @@ class Home extends React.Component {
                 <div className="card-image">
                   <img
                     className="image-responsive"
-                    src="http://via.placeholder.com/75x75"
+                    src={`https://robohash.org/${x._id}png?bgset=bg2&size=75x75`}
                     alt={x.name}
                   />
                 </div>
@@ -86,7 +85,7 @@ class Home extends React.Component {
                       <span className="card-title">{x.name}</span>{" "}
                     </Link>
                     <br />
-            <span className="white-text">Recently added: {(x.shows) && <Link to={`show/${x.shows[x.shows.length-1].showtitle}`}>{x.shows[x.shows.length-1].showtitle}</Link>}</span>
+            <span className="white-text">Recently added: {(x.shows && x.shows.length) && <Link to={`show/${x.shows[x.shows.length-1].showtitle}`}>{x.shows[x.shows.length-1].showtitle}</Link>}</span>
                   </center>
                 </div>
               </div>
