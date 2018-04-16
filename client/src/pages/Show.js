@@ -71,7 +71,7 @@ class Show extends React.Component {
                       </Row>
                       <Row>
                         <Col s={1}>
-                        <Modal header={this.state.show.name} trigger={<Button
+                        <Modal header={this.state.show.name} trigger={<Button className='white blue-text'
                             >
                               Update
                             </Button>}>
