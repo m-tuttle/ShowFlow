@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Database configuration
-var databaseUrl = "mongodb://localhost/showflow";
+var databaseUrl = process.env.MONGODB_URI || "mongodb://localhost/showflow";
 var collections = ["flow", "users"];
 
 // Hook mongojs config to db variable
@@ -149,8 +149,7 @@ if (process.env.NODE_ENV === 'production') {
 
   
   app.post('/savecomments', function(req, res){
-    console.log(req.body);
-    db.flow.insert(req.body, function(err, result) {
+    db.flow.insert({...req.body, date : new Date() }, function(err, result) {
     if (err) throw err;
     res.json(result)
     })
@@ -158,12 +157,22 @@ if (process.env.NODE_ENV === 'production') {
 
 
   app.get('/comments/:show', function(req, res) {
-    console.log(req.params.show);
-    db.flow.find({'target' : req.params.show, 'action' : 'commented on'}, function(err, docs) {
-      console.log(docs);
+    db.flow.find({'target' : req.params.show, 'action' : 'commented on'}).sort({date : -1}, function(err, docs) {
       res.json(docs)
     })
   });
+
+  app.delete('/deleteshow/:delete', function(req, res){
+    db.users.update({'_id': mongojs.ObjectID(req.query.userId)}, { $pull : { 'shows' : { 'showid' : req.query.saveId }}
+    }, function(error, removed) {
+      if (error) {
+        res.send(error);
+      }else {
+        res.json(removed);
+      }
+    });
+
+ });
 
 
 
