@@ -10,7 +10,8 @@ class Show extends React.Component {
         super(props);
         this.state = {
             show: {},
-            users: []
+            users: [],
+            comments: []
         }
     }
 
@@ -26,12 +27,13 @@ class Show extends React.Component {
 
     }
 
+
     addShow = event => {
         event.preventDefault();
 
         let userId = this.props.userId;
         let userName = this.props.userName;
-        let saveId = event.target.parentElement.getAttribute("data-id");
+        var saveId = event.target.parentElement.getAttribute("data-id");
         let saveTitle = event.target.parentElement.getAttribute("data-title");
         let saveImage = event.target.parentElement.getAttribute("data-image");
         let saveStatus = event.target.getAttribute("data-status");
@@ -45,7 +47,10 @@ class Show extends React.Component {
         event.preventDefault();
         var text = document.getElementById("commentText");
         var commentText = text.value;
-        document.getElementById("displayComments").append(commentText + `\n`);
+
+        console.log(commentText);
+        console.log(this.state.show.id);
+        console.log(this.state.users[0].name);
     }
 
     render() {
@@ -163,7 +168,9 @@ class Show extends React.Component {
                   <Col s={8}>
                     <Row>
                       <div id="showCommentDiv">
-                        <div id="displayComments" />
+                        <div id="displayComments">
+
+                        </div>
                         <form>
                           <input type="text" placeholder="comment field" id="commentText" />
                           <br />
