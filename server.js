@@ -95,18 +95,6 @@ if (process.env.NODE_ENV === 'production') {
     })
   })
 
-  app.get('/showshows', function(req, res) {
-    db.users.aggregate([ 
-      {$unwind: "$shows"},
-      {$group: {_id: "$shows", number: {$sum: 1}}}, 
-      {$sort: {number: -1}}
-    ],
-      function(error, result) {
-        res.json(result);
-      }
-    );
-    })
-
   app.post('/saveshow', function(req, res) {
     db.users.findAndModify({query: {_id: mongojs.ObjectId(req.body.userId)}, update : { $addToSet : { "shows" : { showid : req.body.saveId, showtitle : req.body.saveTitle, showimage : req.body.saveImage, showstatus: req.body.saveStatus}}} }, function(err, result) {
       if(result.shows !== undefined) {
@@ -150,8 +138,9 @@ if (process.env.NODE_ENV === 'production') {
     })
   });
 
-  app.delete('/deleteshow', function(req, res){
-    db.users.update({'_id': mongojs.ObjectID(req.query.userId)}, { $pull : { 'shows' : { 'showid' : req.query.saveId }}
+  app.post('/deleteshow', function(req, res){
+    console.log(req.body);
+    db.users.update({'_id': mongojs.ObjectID(req.body.userId)}, { $pull : { 'shows' : { 'showid' : req.body.saveId }}
     }, function(error, removed) {
       if (error) {
         res.send(error);

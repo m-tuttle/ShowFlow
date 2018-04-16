@@ -27,16 +27,6 @@ handleLogin = (event) => {
     Internal.checkUser({name, password}).then(res => {
         if (res.data.length > 0) {
             this.setState({loggedIn : true, userId : res.data[0]._id, userName: res.data[0].name})
-            
-                Internal.showShows().then(response => {
-                    var autoArr = "{";
-                    response.data.map(y => autoArr += (`"${y._id.showtitle}": null, `));
-                    autoArr.slice(0,-1);
-                    var sendStr = autoArr.slice(0,-2) + "}"
-                    this.setState({ shows : JSON.parse(sendStr)})
-                    
-                    });
-                
         }
         else {
             alert("Invalid login. Please try again or create a new account.");
@@ -85,7 +75,7 @@ render() {
         
         <Router>
         <div>
-            <Navbar handleSearchTerm={this.handleSearchTerm} handleLogOut={this.handleLogOut} query={this.state.query} userId={this.state.userId} shows={this.state.shows}/>
+            <Navbar handleSearchTerm={this.handleSearchTerm} handleLogOut={this.handleLogOut} query={this.state.query} userId={this.state.userId}/>
             <Route exact path="/" component={Home} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/profile/:id" render={(props) => (<Profile userId={this.state.userId} {...props}/>)} />

@@ -19,7 +19,7 @@ const Navbar = (props) => {
           </Link>
         </li>
         <li>
-          <Autocomplete className="white-text" title="Search" type="text" id="search" onChange={props.handleSearchTerm} data={props.shows}/>
+          <Autocomplete className="white-text" title="Search" type="text" id="search" onChange={props.handleSearchTerm} />
         </li>
         <li>
           <Link to="/home" className="white-text">
