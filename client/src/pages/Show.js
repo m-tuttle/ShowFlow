@@ -29,7 +29,6 @@ class Show extends React.Component {
             })
         Internal.getComments(this.props.match.params.name)
             .then(res =>  {
-              console.log(res + ' showjs');
               this.setState({comments : res.data})
             })
 
@@ -37,7 +36,6 @@ class Show extends React.Component {
         this.interval = setInterval(() => 
         Internal.getComments(this.props.match.params.name)
         .then(res =>  {
-          console.log(res + ' showjs');
           this.setState({comments : res.data})
         }), 1000);
 
@@ -67,26 +65,26 @@ class Show extends React.Component {
             alert(`Show updated successfully!`)
           })
           } else {
-            alert('You have already added this show.')
+            alert('You have already added this show. Please view your profile to update the status of this status.')
           } 
         })
     }
 
     submitComment = event => {
         event.preventDefault();
-        // Internal.postComment({userId, showTitle, commentText}).then(res => {
-        // alert('Comment Added!')});
 
         var target = this.state.show.name;
         var userId = this.props.userId;
         var name = this.props.userName;
         var action = 'commented on';
-        var date = new Date();
+        var showimg = this.state.show.image.medium;
         var comment = document.getElementById("commentText").value;
 
-        Internal.postComment({target, userId, name, action, date, comment}).then(
+        Internal.postComment({target, userId, name, action, showimg, comment}).then(
           res => alert('Comment added!')
         );
+        
+        document.getElementById('subform').reset();
 
     }
 
@@ -105,10 +103,8 @@ class Show extends React.Component {
                         <img className="responsive-img" src={this.state.show.image.medium} alt="showposter" />
                       </Row>
                       <Row>
-                        <Col s={1}>
-                        <Modal header={this.state.show.name} trigger={<Button className='white blue-text'
-                            >
-                              Update
+                       
+                        <Modal header={this.state.show.name} trigger={<Button>  Add Show
                             </Button>}>
                           <div className='container' style={{width: '50%'}}>
                           <div data-id={this.state.show.id} data-title={this.state.show.name} data-image={this.state.show.image ? this.state.show.image.medium : "http://via.placeholder.com/210x295"}>
@@ -130,7 +126,7 @@ class Show extends React.Component {
                           </div>
                           </div>
                         </Modal>
-                        </Col>
+                        
                       </Row>
                     </CardPanel>
                   </Col>
@@ -215,11 +211,18 @@ class Show extends React.Component {
                           {this.state.comments.map( x => 
                           <div className='card horizontal' key={x._id}>
                           <div className='card-stacked'>
-                            <p className='right'>{x.name} : {x.comment} {x.date}</p>
+                            {x.comment}
+                            
+                            <span className='right-align'><Link to={`/profile/${x.userId}`}>{x.name}</Link></span> 
+                            <span className='right-align'>{new Date(x.date).toLocaleDateString("en-us", {
+                            year: "numeric", month: "short",
+                            day: "numeric", hour: "2-digit", minute: "2-digit"
+                          })}</span>
                           </div>
+                          
                           </div>)}
                           </div>
-                        <form>
+                        <form id='subform'>
                           <input type="text" placeholder="comment field" id="commentText" />
                           <br />
                           <button onClick={this.submitComment}>
@@ -227,7 +230,7 @@ class Show extends React.Component {
                           </button>
                         </form>
                         </div>
-                    </Row>
+                  </Row>
                   </Col>
                 </Row>
               </div>;

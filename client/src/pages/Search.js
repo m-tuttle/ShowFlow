@@ -42,7 +42,6 @@ class Search extends React.Component {
       if(res.data.filter( e => e._id === userId).length === 0) {
     
       Internal.saveShow({userId, saveId, saveTitle, saveImage, saveStatus, userName}).then(res => {
-        console.log(res);
         alert(`Show updated successfully!`)
       })
 
