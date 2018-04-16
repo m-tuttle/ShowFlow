@@ -3,7 +3,7 @@ import axios from "axios";
 const API = {
 
   searchShows: (searchTerm) => {
-    return axios.get(`http://api.tvmaze.com/search/shows?q=${searchTerm}`);
+    return axios.get(`https://api.tvmaze.com/search/shows?q=${searchTerm}`);
   },
 
   sayHiGif: () => {
