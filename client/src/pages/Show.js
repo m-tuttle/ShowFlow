@@ -39,7 +39,7 @@ class Show extends React.Component {
       }
     
     componentWillUnmount() {
-      // setTimeout(function() {clearInterval(this.interval)}.bind(this), 1000);
+      setTimeout(function() {clearInterval(this.interval)}.bind(this), 1000);
     }
 
     addShow = event => {
