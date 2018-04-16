@@ -28,7 +28,7 @@ class Show extends React.Component {
             })
         Internal.getComments(this.props.match.params.name)
             .then(res =>  {
-              console.log(res);
+              console.log(res + ' showjs');
               this.setState({comments : res.data})
             })
 

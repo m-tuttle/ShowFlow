@@ -49,8 +49,8 @@ const Internal = {
     return axios.get('/flow')
   },
 
-  getComments: show => {
-    return axios.get(`/comments/${show}`)
+  getComments: (show) => {
+    return axios.get(`/comments/${show}`, { params: {show}})
   },
 
   postComment: (input) => {
