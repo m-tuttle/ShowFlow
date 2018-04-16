@@ -156,13 +156,11 @@ if (process.env.NODE_ENV === 'production') {
   });
 
   app.get('/comments/:show', function(req, res) {
-    console.log('comment get route hit');
-    res.json();
-    db.flow.find({'target' : req.params.show, 'action' : 'commented on' }), function(err, docs) {
-      if (err) throw err;
+    console.log(req.params.show);
+    db.flow.find({'target' : 'Suits', 'action' : 'commented on'}, function(err, docs) {
       console.log(docs);
       res.json(docs)
-    }
+    })
   })
 
 /////////////////////
