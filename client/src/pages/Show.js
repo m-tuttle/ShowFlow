@@ -55,9 +55,26 @@ class Show extends React.Component {
         var text = document.getElementById("commentText");
         var commentText = text.value;
 
-        console.log(commentText);
-        console.log(this.state.show.id);
-        console.log(this.state.users[0].name);
+        
+        var showId = this.state.show.id;
+        var posterName = this.state.users[0].name;
+        var commentDate = new Date().toLocaleDateString("en-us", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit"
+        });
+
+        return fetch("/savecomments", {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ showId, posterName, commentText, commentDate})
+        }).then(res => res.json());
+
     }
 
     render() {
