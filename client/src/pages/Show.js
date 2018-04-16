@@ -52,14 +52,17 @@ class Show extends React.Component {
       setTimeout(function() {clearInterval(this.interval)}.bind(this), 1000);
     }
 
+<<<<<<< HEAD
     
+=======
+>>>>>>> af0da54d03ecdeb4c63ee25a48133280bc4d5f8f
 
     addShow = event => {
         event.preventDefault();
 
         let userId = this.props.userId;
         let userName = this.props.userName;
-        let saveId = event.target.parentElement.getAttribute("data-id");
+        var saveId = event.target.parentElement.getAttribute("data-id");
         let saveTitle = event.target.parentElement.getAttribute("data-title");
         let saveImage = event.target.parentElement.getAttribute("data-image");
         let saveStatus = event.target.getAttribute("data-status");
@@ -84,6 +87,27 @@ class Show extends React.Component {
         let showTitle = this.props.match.params.name;
         Internal.postComment({userId, showTitle, commentText}).then(res => {
         alert('Comment Added!')});
+
+        
+        var showId = this.state.show.id;
+        var posterName = this.state.users[0].name;
+        var commentDate = new Date().toLocaleDateString("en-us", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit"
+        });
+
+        return fetch("/savecomments", {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ showId, posterName, commentText, commentDate})
+        }).then(res => res.json());
+
     }
 
     render() {
@@ -208,10 +232,15 @@ class Show extends React.Component {
                     <Row>
                       <div id="showCommentDiv">
                         <div id="displayComments">
+<<<<<<< HEAD
                           {this.state.comment.map( x => this.state.comment[x].shows.map( y => (<div className='card horizontal' key={y._id}>
                           <div className='card-stacked'><p className='right'>{y.showtitle}</p></div>
                           </div>)))}
                           </div>
+=======
+
+                        </div>
+>>>>>>> af0da54d03ecdeb4c63ee25a48133280bc4d5f8f
                         <form>
                           <input type="text" placeholder="comment field" id="commentText" />
                           <br />
