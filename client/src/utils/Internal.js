@@ -50,11 +50,11 @@ const Internal = {
   },
 
   getComments: show => {
-    return axios.get(`/comments/${show}`, show)
+    return axios.get(`/comments/${show}`)
   },
 
-  postComment: (comment) => {
-    return axios.post(`/comments/${comment}`, comment)
+  postComment: (input) => {
+    return axios.post('/savecomments', input)
   }
   
 };

@@ -12,7 +12,7 @@ class Show extends React.Component {
         this.state = {
             show: {},
             users: [],
-            comment: [],
+            comments: [],
             timer: false
         }
     }
@@ -28,34 +28,19 @@ class Show extends React.Component {
             })
         Internal.getComments(this.props.match.params.name)
             .then(res =>  {
-              var dbComments = [];
-              console.log(res.data.length + ' 32');
-              console.log(res.data[0].shows.length + ' 33')
-              if(res.data[0].shows[0].length !== undefined) {
-              for (var i = 0; i < res.data.length; i++) {
-                for (var j = 0; j < res.data[i].shows.length; j++) {
-                    for (var k = 0; k < res.data[i].shows[j].length; k++) {
-                      dbComments.push(res.data[i].shows[j].showcomments[k])
-                      console.log('made it')
-                    }
-                }
-              }}
-              console.log(dbComments);
-              this.setState({ comment: dbComments })
+              console.log(res);
+              this.setState({comments : res.data})
             })
-        this.interval = setInterval(() => 
-          console.log('hi'), 1000);
+
+
+        // this.interval = setInterval(() => 
+        //   console.log('hi'), 1000);
 
       }
     
     componentWillUnmount() {
-      setTimeout(function() {clearInterval(this.interval)}.bind(this), 1000);
+      // setTimeout(function() {clearInterval(this.interval)}.bind(this), 1000);
     }
-
-<<<<<<< HEAD
-    
-=======
->>>>>>> af0da54d03ecdeb4c63ee25a48133280bc4d5f8f
 
     addShow = event => {
         event.preventDefault();
@@ -81,32 +66,19 @@ class Show extends React.Component {
 
     submitComment = event => {
         event.preventDefault();
-        var text = document.getElementById("commentText");
-        var commentText = text.value;
-        let userId = this.props.userId;
-        let showTitle = this.props.match.params.name;
-        Internal.postComment({userId, showTitle, commentText}).then(res => {
-        alert('Comment Added!')});
+        // Internal.postComment({userId, showTitle, commentText}).then(res => {
+        // alert('Comment Added!')});
 
-        
-        var showId = this.state.show.id;
-        var posterName = this.state.users[0].name;
-        var commentDate = new Date().toLocaleDateString("en-us", {
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-          hour: "2-digit",
-          minute: "2-digit"
-        });
+        var target = this.state.show.name;
+        var userId = this.props.userId;
+        var name = this.props.userName;
+        var action = 'commented on';
+        var date = new Date();
+        var comment = document.getElementById("commentText").value;
 
-        return fetch("/savecomments", {
-          method: "POST",
-          headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ showId, posterName, commentText, commentDate})
-        }).then(res => res.json());
+        Internal.postComment({target, userId, name, action, date, comment}).then(
+          res => alert('Comment added!')
+        );
 
     }
 
@@ -232,15 +204,13 @@ class Show extends React.Component {
                     <Row>
                       <div id="showCommentDiv">
                         <div id="displayComments">
-<<<<<<< HEAD
-                          {this.state.comment.map( x => this.state.comment[x].shows.map( y => (<div className='card horizontal' key={y._id}>
-                          <div className='card-stacked'><p className='right'>{y.showtitle}</p></div>
-                          </div>)))}
+                          {this.state.comments.map( x => 
+                          <div className='card horizontal' key={x._id}>
+                          <div className='card-stacked'>
+                            <p className='right'>{x.name} : {x.comment} {x.date}</p>
                           </div>
-=======
-
-                        </div>
->>>>>>> af0da54d03ecdeb4c63ee25a48133280bc4d5f8f
+                          </div>)}
+                          </div>
                         <form>
                           <input type="text" placeholder="comment field" id="commentText" />
                           <br />
