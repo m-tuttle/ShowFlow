@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardPanel, Row, Col, Table, Button, ProgressBar, Modal } from 'react-materialize';
+import { CardPanel, Row, Col, Table, Button, Modal } from 'react-materialize';
 import Internal from '../utils/Internal';
 import API from '../utils/API';
 import { Link } from 'react-router-dom';

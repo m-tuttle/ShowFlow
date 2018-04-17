@@ -24,10 +24,6 @@ const Internal = {
   showUsers: () => {
     return axios.get('/showallusers');
   },
-
-  showShows: () => {
-    return axios.get('/showshows');
-  },
     
   topTrending: () => {
     return axios.get('/toptrending');
@@ -38,7 +34,7 @@ const Internal = {
   },
 
   deleteShow: (show) => {
-    return axios.delete('/deleteshow', { params: show })
+    return axios.post('/deleteshow', show)
   },
 
   getUsersByShow: (title) => {

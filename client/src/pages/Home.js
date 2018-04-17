@@ -34,14 +34,14 @@ class Home extends React.Component {
         
         <div className='card horizontal row' key={x._id}>
         {/* Image */}
-        <img className='circle col s2 responsive-img' src={`https://robohash.org/${x.userId}png?bgset=bg2&size=150x150`} alt={x.target} id='profpic'/>
+        <img className='circle col s2 responsive-img' src={`https://robohash.org/${x.userId}png?bgset=bg2&size=200x150`} alt={x.target} id='profpic'/>
         {/* Action and target */}
         
           <div className='col s5 white-text'>
         <p><Link to={`/profile/${x.userId}`}><i>{x.name}</i></Link> {x.action} <Link to={(x.target==='ShowFlow') ? "/" : `/show/${x.target}`}><i>{x.target}</i></Link>{(x.action === 'updated the watch status of') ? <span> to <i>{x.showstatus}</i>.</span>  : '.'}</p>
 
           
-          <p className='right'>{(x.target==='ShowFlow') ? "Say hi!" : `${x.target}`}</p>
+          <p className='right'>{(x.target==='ShowFlow') ? "Say hi!" : <Link to={`/show/${x.target}`}><i>{x.target}</i></Link>}</p>
           </div>
         {/* Date */}
         <div className='col s5'>
@@ -49,7 +49,7 @@ class Home extends React.Component {
                 year: "numeric", month: "short",
                 day: "numeric", hour: "2-digit", minute: "2-digit"
             })}</p><br /><br />
-            {(x.target==='ShowFlow') ? <iframe src={this.state.targetImg} width="120" height="120" frameBorder="0" className="giphy-embed" allowFullScreen></iframe> : <img className='responsive-img targetpic' src={x.showimg} alt={x.target} id='targetpic'/>}
+            {(x.target==='ShowFlow') ? <iframe title='showtitle' src={this.state.targetImg} width="120" height="120" frameBorder="0" className="giphy-embed" allowFullScreen></iframe> : <Link to={`/show/${x.target}`}><img className='responsive-img targetpic' src={x.showimg} alt={x.target} id='targetpic'/></Link>}
         </div>
          
         </div>

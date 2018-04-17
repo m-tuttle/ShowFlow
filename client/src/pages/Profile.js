@@ -67,13 +67,16 @@ class Profile extends React.Component {
             <div className="container">
                 <div className="row card-panel">
                     <div className="col s6">
-                        <img className="responsive-img left circle responsive-img" id='profpic' src={`https://robohash.org/${this.props.userId}png?bgset=bg2&size=250x250`} alt="Profile" />
+                        <img className="responsive-img left circle responsive-img" id='profpic' src={`https://robohash.org/${this.state.user._id}png?bgset=bg2&size=250x250`} alt="Profile" />
                     </div>
                     <div className="col s1"></div>
                     <div className="col s5">
                         {(this.state.myProfile) && <h3>My Profile</h3>}
                         <ul>
-                            <li><h5>{this.state.user.name}</h5></li>
+                            <li><h5>{this.state.user.name}</h5></li>    
+                            <li>
+                             <span className="white-text">Recently added: {(this.state.user.shows && this.state.user.shows.length) && this.state.user.shows[this.state.user.shows.length-1].showtitle}</span>
+                            </li>
                         </ul>
                     </div>
                 </div >

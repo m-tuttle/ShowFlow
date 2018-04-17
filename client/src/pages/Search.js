@@ -46,7 +46,7 @@ class Search extends React.Component {
       })
 
       } else {
-        alert('You have already added this show.')
+        alert('You have already added this show. Please visit your profile to update your status.')
 
       } 
     })
@@ -54,8 +54,10 @@ class Search extends React.Component {
   
     render() {
       return (
-      <div>
-
+        <div>
+        <h4 className="mtop marleft">
+            <span className='title'>Top Results...</span>
+          </h4>
         <div id="resultsDiv" className="scrollmenu">
           <div className="row">
             {this.state.shows.map(x => (
@@ -118,7 +120,8 @@ class Search extends React.Component {
             ))}
           </div>
         </div>
-      </div>
+        </div>
+      
     );
   }
 }

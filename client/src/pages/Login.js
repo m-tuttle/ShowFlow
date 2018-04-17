@@ -5,6 +5,7 @@ const Login = (props) => {
     return (
         <div id="form-wrapper">
             <div id="login">
+                <h4 id='headline'>ShowFlow</h4>
                 <form>
                     <input type="text" placeholder="name" id="username" />
                     <input type="password" placeholder="password" id="pass" />
