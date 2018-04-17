@@ -21,7 +21,7 @@ const Login = (props) => {
                         <li><input type="text" placeholder="password" id="newpass" /></li>
                         <li><input type="text" placeholder="email" id="newemail" /></li>
                     </ul>
-                    <input type="submit" value="Create Account" />
+                    <input style={{width: '100%', padding: '20px', color: 'white', backgroundColor: '#05668D'}} type="submit" value="Create Account" />
                     </form>
                     </Modal>
                 
