@@ -29,7 +29,7 @@ class Home extends React.Component {
     return ( <div id="home">
 
         <div className="row">
-        <div className="col s9">
+        <div className="col s9 flowNewsDiv">
         {this.state.flow.map(x => 
         
         <div className='card horizontal row' key={x._id}>
