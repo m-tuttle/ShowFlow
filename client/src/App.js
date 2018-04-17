@@ -11,7 +11,7 @@ import Background from './images/showflowlogin.jpg'
 
 var sectionStyle = {
     width: "100%",
-    height: "900px",
+    height: "800px",
     backgroundImage: `url(${Background})`
   };
 
