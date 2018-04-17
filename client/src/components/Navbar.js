@@ -19,7 +19,7 @@ const Navbar = (props) => {
           </Link>
         </li>
         <li>
-          <input className="white-text" title="Search" type="text" id="search" onChange={props.handleSearchTerm} />
+          <input className="white-text" title="Search" type="text" id="search" placeholder='Search' onChange={props.handleSearchTerm} />
         </li>
         <li>
           <Link to="/home" className="white-text">
