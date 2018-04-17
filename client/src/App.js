@@ -10,10 +10,14 @@ import Internal from './utils/Internal';
 import Background from './images/showflowlogin.jpg'
 
 var sectionStyle = {
-    width: "100%",
-    height: "800px",
-    backgroundImage: `url(${Background})`
-  };
+  width: "100%",
+  height: "1000px",
+  backgroundSize: "cover",
+  backgroundAttachment: "fixed",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  backgroundImage: `url(${Background})`
+};
 
 class App extends Component {
     constructor() {
