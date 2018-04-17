@@ -22,6 +22,7 @@ class Show extends React.Component {
             .then(res => {
                 this.setState({ show: res.data[0].show })
             })
+
         Internal.getUsersByShow(this.props.match.params.name)
             .then(res => {
                 this.setState({ users: res.data })
@@ -42,7 +43,10 @@ class Show extends React.Component {
     
     componentWillUnmount() {
       setTimeout(function() {clearInterval(this.interval)}.bind(this), 1000);
+
     }
+
+  
 
     addShow = event => {
         event.preventDefault();
