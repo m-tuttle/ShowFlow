@@ -1,7 +1,7 @@
 import React from 'react';
 import Internal from '../utils/Internal';
 import { Link } from 'react-router-dom'
-import { Tabs, Tab } from 'react-materialize';
+import { Button, Tabs, Tab } from 'react-materialize';
 import "./Profile.css";
 
 class Profile extends React.Component {
@@ -77,6 +77,8 @@ class Profile extends React.Component {
                             <li>
                              <span className="white-text">Recently added: {(this.state.user.shows && this.state.user.shows.length) && this.state.user.shows[this.state.user.shows.length-1].showtitle}</span>
                             </li>
+                            <br />
+                            {!this.state.myProfile && <li><button className="btn waves-effect waves-light red white-text mbot">Add Friend</button></li>}
                         </ul>
                     </div>
                 </div >
