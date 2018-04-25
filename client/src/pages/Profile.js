@@ -62,6 +62,11 @@ class Profile extends React.Component {
         })
     }
 
+    addFriend = (event) => {
+        event.preventDefault();
+        alert('hi');
+    }
+
     render() {
         return (
             <div className="container">
@@ -78,7 +83,7 @@ class Profile extends React.Component {
                              <span className="white-text">Recently added: {(this.state.user.shows && this.state.user.shows.length) && this.state.user.shows[this.state.user.shows.length-1].showtitle}</span>
                             </li>
                             <br />
-                            {!this.state.myProfile && <li><button className="btn waves-effect waves-light red white-text mbot">Add Friend</button></li>}
+                            {!this.state.myProfile && <li><button className="btn waves-effect waves-light red white-text mbot" onClick={this.addFriend}>Add Friend</button></li>}
                         </ul>
                     </div>
                 </div >
@@ -95,10 +100,11 @@ class Profile extends React.Component {
                                             if (element.showstatus === 'watched') {
                                                 return (
                                                     <div className=" stuff" key={element.showid}>
-                                                        <div className="card">
+                                                        <div className="card hoverable">
                                                             <div className="card-image">
                                                                 <center>
-                                                                    <img src={element.showimage} alt={element.title} />
+                                                                <Link to={`/show/${element.showtitle}`}><img src={element.showimage} alt={element.title} />
+                                                                </Link>
                                                                 </center>
                                                                 <br />
                                                             </div>
@@ -155,10 +161,11 @@ class Profile extends React.Component {
                                             if (element.showstatus === 'watching') {
                                                 return (
                                                     <div className=" stuff" key={element.showid}>
-                                                        <div className="card">
+                                                        <div className="card hoverable">
                                                         <div className="card-image">
                                                             <center>
-                                                                <img src={element.showimage} alt={element.title} />
+                                                                 <Link to={`/show/${element.showtitle}`}><img src={element.showimage} alt={element.title} />
+                                                            </Link>
                                                             </center>
                                                             <br />
                                                         </div>
@@ -214,11 +221,12 @@ class Profile extends React.Component {
                                         {(this.state.load) && this.state.user.shows.map(element => {
                                             if (element.showstatus === 'queued') {
                                                 return (
-                                                    <div className=" stuff" key={element.showid}>
-                                                        <div className="card">
+                                                    <div className="stuff" key={element.showid}>
+                                                        <div className="card hoverable">
                                                         <div className="card-image">
                                                             <center>
-                                                                <img src={element.showimage} alt={element.title} />
+                                                            <Link to={`/show/${element.showtitle}`}><img src={element.showimage} alt={element.title} />
+                                                            </Link>
                                                             </center>
                                                             <br />
                                                         </div>

@@ -62,7 +62,7 @@ class Search extends React.Component {
           <div className="row">
             {this.state.shows.map(x => (
               <div className="stuff" key={x.show.id}>
-                <div className="card">
+                <div className="card hoverable">
                   <div className="card-image">
                     <center>
                       <Link to="/show"><img src={(x.show.image) ? x.show.image.medium : 'http://via.placeholder.com/210x295'} alt={x.show.name} /></Link>

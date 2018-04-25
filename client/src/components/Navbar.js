@@ -23,17 +23,33 @@ const Navbar = (props) => {
         </li>
         <li>
           <Link to="/home" className="white-text">
-            Home
+          <Icon className="white-text">
+              home
+            </Icon>
               </Link>
         </li>
         <li>
+          <Link to="/home" className="white-text">
+          {true && <Icon className="white-text">
+              notifications
+            </Icon>}
+          {false && <Icon className="white-text">
+              notifications_active
+          </Icon>}
+          </Link>
+        </li>
+        <li>
           <Link to={`/profile/${props.userId}`} className="white-text">
-            Profile
+          <Icon className="white-text">
+              account_circle
+            </Icon>
               </Link>
         </li>
         <li>
           <a onClick={props.handleLogOut} className="white-text">
-            Log Out
+          <Icon className="white-text" type="submit">
+              power_settings_new
+            </Icon>
               </a>
         </li>
       </ul>

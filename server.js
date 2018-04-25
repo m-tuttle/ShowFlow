@@ -36,20 +36,16 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
-/*
-  if we don't do this here then we'll get this error in apps that use this api
+  // Allow the api to be accessed by other apps
 
-  Fetch API cannot load No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin is therefore not allowed access. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
-
-  read up on CORs here: https://www.maxcdn.com/one/visual-glossary/cors/
-*/
-  //allow the api to be accessed by other apps
   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE");
     next();
   });
+
+  // Login routes to verify or create user
 
   app.get('/checkuser', function(req, res) {
     db.users.find(req.query, {password: 0}, function (err, result) {
@@ -72,13 +68,6 @@ if (process.env.NODE_ENV === 'production') {
     })
   })
 
-  app.get('/usersbyshow', function (req, res) {
-    db.users.find({ "shows.showtitle": req.query.title }, {password: 0}, function (err, result) {
-      if (err) throw err;
-      res.json(result);
-    })
-  })
-
   app.post('/createuser', function(req, res) {
     db.users.insert({'name': req.body.name, 'password': req.body.pass, 'email': req.body.email}, function (err, result) {
       if (err) throw err;
@@ -89,11 +78,43 @@ if (process.env.NODE_ENV === 'production') {
     })
   })
 
+  // Routes to find and display feed information from user activity
+
+  app.get('/usersbyshow', function (req, res) {
+    db.users.find({ "shows.showtitle": req.query.title }, {password: 0}, function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    })
+  })
+
   app.get('/flow', function(req, res) {
     db.flow.find({}).sort({'date': -1}, function(err, docs) {
       res.json(docs)
     })
   })
+
+  app.get("/toptrending", function(req, res) {
+    db.users.aggregate([ 
+      {$unwind: "$shows"},
+      {$group: { _id : "$shows.showtitle", number: {$sum: 1}}}, 
+      {$sort: {number: -1}}, 
+      {$limit:5}
+    ],
+      function(error, result) {
+        res.json(result);
+      }
+    );
+  });
+
+  app.get("/showallusers", function(req, res) {
+    db.users.find({}, {password: 0},
+      function(error, result) {
+        res.json(result);
+      }
+    );
+  });
+
+  // Update show watch status by user, updating account and flow
 
   app.post('/saveshow', function(req, res) {
     db.users.findAndModify({query: {_id: mongojs.ObjectId(req.body.userId)}, update : { $addToSet : { "shows" : { showid : req.body.saveId, showtitle : req.body.saveTitle, showimage : req.body.saveImage, showstatus: req.body.saveStatus}}} }, function(err, result) {
@@ -123,20 +144,6 @@ if (process.env.NODE_ENV === 'production') {
 
     })
   });
-  
-  app.post('/savecomments', function(req, res){
-    db.flow.insert({...req.body, date : new Date() }, function(err, result) {
-    if (err) throw err;
-    res.json(result)
-    })
-  })
-
-
-  app.get('/comments/:show', function(req, res) {
-    db.flow.find({'target' : req.params.show, 'action' : 'commented on'}).sort({date : -1}, function(err, docs) {
-      res.json(docs)
-    })
-  });
 
   app.post('/deleteshow', function(req, res){
     console.log(req.body);
@@ -151,32 +158,23 @@ if (process.env.NODE_ENV === 'production') {
 
  });
 
+  // Show comment routes on show pages
+  
+  app.post('/savecomments', function(req, res){
+    db.flow.insert({...req.body, date : new Date() }, function(err, result) {
+    if (err) throw err;
+    res.json(result)
+    })
+  })
+
+  app.get('/comments/:show', function(req, res) {
+    db.flow.find({'target' : req.params.show, 'action' : 'commented on'}).sort({date : -1}, function(err, docs) {
+      res.json(docs)
+    })
+  });
 
 
-
-/////////////////////
-
-    app.get("/showallusers", function(req, res) {
-      db.users.find({}, {password: 0},
-        function(error, result) {
-          res.json(result);
-        }
-      );
-    });
-
-    app.get("/toptrending", function(req, res) {
-      db.users.aggregate([ 
-        {$unwind: "$shows"},
-        {$group: { _id : "$shows.showtitle", number: {$sum: 1}}}, 
-        {$sort: {number: -1}}, 
-        {$limit:5}
-      ],
-        function(error, result) {
-          res.json(result);
-        }
-      );
-    });
-
+// Default route
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, './client/build/index.html'));
 });
