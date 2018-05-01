@@ -64,7 +64,7 @@ class Profile extends React.Component {
 
     addFriend = (event) => {
         event.preventDefault();
-        alert('hi');
+        alert('"Friends List" functionality coming soon.');
     }
 
     render() {

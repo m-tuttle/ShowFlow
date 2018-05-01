@@ -26,7 +26,7 @@ const Navbar = (props) => {
           <Icon className="white-text">
               home
             </Icon>
-              </Link>
+          </Link>
         </li>
         <li>
           <Link to="/home" className="white-text">
